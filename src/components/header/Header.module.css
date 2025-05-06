@@ -1,0 +1,155 @@
+.header {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  transition: background-color 0.3s ease;
+  background-color: var(--header-footer);
+  padding: 10px;
+}
+.header.compact {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.scrolled {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+}
+
+.logoWrapper {
+  display: none;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.logoWrapper.moveLogo {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.header .consultationBtn {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  display: none;
+  height: 35px;
+  padding: 6px 12px;
+  background-color: transparent;
+  border: 1px solid var(--additional-text);
+  color: var(--additional-text);
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  
+}
+
+.header .consultationBtn.showBtn {
+  opacity: 1;
+  transform: translateY(0);
+  display: inline-block;
+}
+
+.header_container {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 16px;
+  padding-inline: 16px;
+}
+.header_container.withElements {
+  justify-content: space-between;
+}
+
+.logoImg {
+  height: 50px;
+  width: 50px;
+  flex-shrink: 0;
+}
+
+.nav {
+  display: none;
+}
+.nav a {
+  color: var(--additional-text);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.burger {
+  background: none;
+  border: none;
+  color: var(--additional-text);
+  display: block;
+  cursor: pointer;
+}
+
+/* ==== TABLET (768px+) ==== */
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 20px 0;
+  }
+  .header_container {
+    /* padding-inline: 36px; */
+    justify-content: center;
+  }
+  .header.compact {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+  .header_container.withElements {
+    justify-content: space-between;
+  }
+  .nav {
+    display: flex;
+    gap: 20px;
+  }
+  .nav a.active {
+    font-weight: bold;
+    text-decoration: underline;
+    color: rgb(202, 106, 47);
+  }
+
+  .header .consultationBtn.showBtn {
+    display: inline-block;
+    height: 45px;
+    padding: 8px 16px;
+    font-size: 15px;
+  }
+
+  .burger {
+    display: none;
+  }
+}
+
+/* ==== DESKTOP (1440px+) ==== */
+@media screen and (min-width: 1280px) {
+  .header {
+    padding: 28px 0;
+  }
+  .header_container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-inline: 72px;
+  }
+  .header.compact {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+  .nav {
+    gap: 24px;
+  }
+
+  .header .consultationBtn.showBtn {
+    font-size: 16px;
+    padding: 10px 24px;
+    height: 50px;
+  }
+}

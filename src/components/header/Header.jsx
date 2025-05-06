@@ -1,0 +1,95 @@
+import styles from "./Header.module.css";
+import logo from "../../assets/owl.jpg";
+import { GiHamburgerMenu } from "react-icons/gi";
+import MobileMenu from "../MobileMenu/MobileMenu.jsx";
+import { useEffect, useState } from "react";
+
+const Header = ({ scrolled }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeId, setActiveId] = useState("");
+
+  useEffect(() => {
+    const sectionIds = ["services", "about", "advantages", "contacts"];
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 130; // 130 — з урахуванням висоти хедера
+
+      let currentSectionId = "";
+      for (let id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollPosition) {
+          currentSectionId = id;
+        }
+      }
+      setActiveId(currentSectionId);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <header
+      className={`${styles.header} ${
+        scrolled ? `${styles.scrolled} ${styles.compact}` : ""
+      }`}
+    >
+      <div
+        className={`container ${styles.header_container} ${
+          scrolled ? styles.withElements : ""
+        }`}
+      >
+        <a href="/"
+          className={`${styles.logoWrapper} ${scrolled ? styles.moveLogo : ""}`}
+        >
+          <img className={styles.logoImg} src={logo} alt="Logo" />
+        </a>
+
+        <nav className={styles.nav}>
+          <a
+            href="#services"
+            className={activeId === "services" ? styles.active : ""}
+          >
+            Послуги
+          </a>
+          <a
+            href="#about"
+            className={activeId === "about" ? styles.active : ""}
+          >
+            Про нас
+          </a>
+          <a
+            href="#advantages"
+            className={activeId === "advantages" ? styles.active : ""}
+          >
+            Переваги
+          </a>
+          <a
+            href="#contacts"
+            className={activeId === "contacts" ? styles.active : ""}
+          >
+            Контакти
+          </a>
+        </nav>
+
+        <button
+          className={`${styles.consultationBtn} ${
+            scrolled ? styles.showBtn : ""
+          }`}
+        >
+          Консультація
+        </button>
+
+        <button className={styles.burger} onClick={() => setMenuOpen(true)}>
+          <GiHamburgerMenu size={24} />
+        </button>
+      </div>
+
+      {menuOpen && <MobileMenu onClose={() => setMenuOpen(false)} />}
+    </header>
+  );
+};
+
+export default Header;

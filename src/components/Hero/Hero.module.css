@@ -1,0 +1,109 @@
+.hero {
+  width: 100vw;
+  background: var(--header-footer);
+  padding: 30px 0;
+  transition: padding 0.5s ease;
+}
+
+.hero.shrink {
+  padding: 10px 0;
+}
+
+.hero_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding-inline: 16px;
+}
+.logo {
+  width: 280px;
+  height: 280px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+.title {
+  color: var(--additional-text);
+  font-size: 24px;
+  text-align: center;
+}
+
+.logo.hide {
+  opacity: 0;
+  transform: translateY(-40px);
+  pointer-events: none;
+}
+
+.consultationBtn {
+  text-align: center;
+  color: var(--additional-text);
+  width: 100%;
+  max-width: 300px;
+  height: 50px;
+  background-color: transparent;
+  font-size: medium;
+  border: 1px solid var(--additional-text);
+  border-radius: 8px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.consultationBtn.hide {
+  opacity: 0;
+  transform: translateY(40px);
+  pointer-events: none;
+}
+
+/* ==== TABLET (768px+) ==== */
+@media screen and (min-width: 768px) {
+  .hero {
+    padding: 40px 0;
+  }
+
+  .hero.shrink {
+    padding: 20px 0;
+  }
+  .logo {
+    width: 400px;
+    height: 400px;
+      }
+  .title {
+    font-size: 32px;
+  }
+
+  .consultationBtn {
+    height: 56px;
+    font-size: 16px;
+  }
+}
+
+/* ==== DESKTOP (1440px+) ==== */
+@media screen and (min-width: 1280px) {
+  .hero {
+    padding: 60px 0;
+  }
+
+  .hero.shrink {
+    padding: 30px 0;
+  }
+
+  .hero_container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-inline: 72px;
+  }
+  .logo {
+    width: 900px;
+    height: 900px;
+      }
+  .title {
+    font-size: 40px;
+  }
+
+  .consultationBtn {
+    height: 60px;
+    font-size: 18px;
+  }
+}

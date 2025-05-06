@@ -1,0 +1,88 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    animation: fadeIn 0.3s ease forwards;
+  }
+  
+  .menu {
+    background-color: white;
+    width: 80%;
+    max-width: 320px;
+    height: 75%;
+    min-height: 560px;
+    padding: 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    animation: scaleSlideIn 0.35s ease forwards;
+    transform-origin: top right;
+    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu.closing {
+    animation: scaleSlideOut 0.3s ease forwards;
+  }
+  
+  .closeBtn {
+    background: none;
+    border: none;
+    align-self: flex-end;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .nav {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .nav a {
+    font-size: 18px;
+    text-decoration: none;
+    color: var( --header-footer);
+    transition: color 0.3s ease;
+  }
+  
+  .nav a:hover {
+    color: var(--button-without-icon);
+    text-decoration: underline;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      background-color: rgba(0, 0, 0, 0);
+    }
+    to {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+  }
+  
+  @keyframes scaleSlideIn {
+    from {
+      transform: translate(30px, -30px) scale(0.5);
+      opacity: 0;
+    }
+    to {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes scaleSlideOut {
+    from {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: translate(30px, -30px) scale(0.5);
+      opacity: 0;
+    }
+  }
+  
