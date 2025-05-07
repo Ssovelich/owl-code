@@ -1,4 +1,4 @@
-import logo from "../../assets/owl.jpg";
+import logo from "../../../public/owl.jpg";
 import styles from "./Hero.module.css";
 
 const Hero = ({ scrolled }) => {

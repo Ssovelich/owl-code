@@ -24,8 +24,9 @@
   opacity: 1;
 }
 .title {
-  color: var(--additional-text);
-  font-size: 24px;
+  /* color: var(--additional-text); */
+  color: #20c2c4;
+   font-size: 24px;
   text-align: center;
 }
 
@@ -45,10 +46,13 @@
   font-size: medium;
   border: 1px solid var(--additional-text);
   border-radius: 8px;
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: all 0.5s ease;
   transform: translateY(0);
   opacity: 1;
-}
+ }
+.consultationBtn:hover {
+  transform: scale(1.05);
+   }
 
 .consultationBtn.hide {
   opacity: 0;

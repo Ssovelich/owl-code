@@ -34,7 +34,6 @@
 .header .consultationBtn {
   opacity: 0;
   transform: translateY(-50px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
   display: none;
   height: 35px;
   padding: 6px 12px;
@@ -44,7 +43,12 @@
   border-radius: 8px;
   font-size: 14px;
   cursor: pointer;
-  
+  scale: 1;
+  transition: all 0.5s ease;
+}
+
+.header .consultationBtn:hover {
+  scale: 1.05;
 }
 
 .header .consultationBtn.showBtn {
@@ -81,6 +85,7 @@
 
 .nav a:hover {
   text-decoration: underline;
+  color: #ffcc00;
 }
 
 .burger {
@@ -114,12 +119,12 @@
   .nav a.active {
     font-weight: bold;
     text-decoration: underline;
-    color: rgb(202, 106, 47);
+    color: #00ffff;
   }
 
   .header .consultationBtn.showBtn {
     display: inline-block;
-    height: 45px;
+    height: 40px;
     padding: 8px 16px;
     font-size: 15px;
   }

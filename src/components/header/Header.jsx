@@ -1,5 +1,5 @@
 import styles from "./Header.module.css";
-import logo from "../../assets/owl.jpg";
+import logo from "../../../public/owl.jpg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import MobileMenu from "../MobileMenu/MobileMenu.jsx";
 import { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ const Header = ({ scrolled }) => {
     const sectionIds = ["services", "about", "advantages", "contacts"];
 
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 130; // 130 — з урахуванням висоти хедера
+      const scrollPosition = window.scrollY + 130;
 
       let currentSectionId = "";
       for (let id of sectionIds) {
