@@ -1,42 +1,40 @@
 .header {
   width: 100vw;
+  height: 64px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
   transition: background-color 0.3s ease;
   background-color: var(--header-footer);
-  padding: 10px;
+  /* padding: 10px; */
 }
-.header.compact {
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
 .scrolled {
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(2px);
 }
-
 .logoWrapper {
-  display: none;
-  opacity: 0;
-  transform: translateY(100px);
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-.logoWrapper.moveLogo {
   display: block;
-  transform: translateY(0);
-  opacity: 1;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  pointer-events: none;
 }
-
+.logoWrapper.moveLogo {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.logoWrapper.hide {
+  opacity: 0;
+  transform: translateY(40px);
+}
 .header .consultationBtn {
   opacity: 0;
-  transform: translateY(-50px);
-  display: none;
+  transform: translateY(40px);
+  display: inline-block;
   height: 35px;
-  padding: 6px 12px;
+  padding: 9px 12px;
   background-color: transparent;
   border: 1px solid var(--additional-text);
   color: var(--additional-text);
@@ -45,35 +43,41 @@
   cursor: pointer;
   scale: 1;
   transition: all 0.5s ease;
+  pointer-events: none;
+  text-decoration: none;
+  text-align: center;
 }
-
 .header .consultationBtn:hover {
   scale: 1.05;
 }
-
 .header .consultationBtn.showBtn {
   opacity: 1;
   transform: translateY(0);
   display: inline-block;
+  pointer-events: auto;
 }
-
+.header .consultationBtn.hide {
+  opacity: 0;
+  transform: translateY(40px);
+}
 .header_container {
   display: flex;
   align-items: center;
-  justify-content: end;
+  /* justify-content: end; */
+  justify-content: space-between;
   gap: 16px;
-  padding-inline: 16px;
+  /* padding-inline: 16px; */
+  height: 100%;
+  /* padding-block: 10px; */
 }
 .header_container.withElements {
   justify-content: space-between;
 }
-
 .logoImg {
-  height: 50px;
-  width: 50px;
-  flex-shrink: 0;
+  width: auto;
+  height: 40px;
+  object-fit: contain;
 }
-
 .nav {
   display: none;
 }
@@ -82,12 +86,10 @@
   text-decoration: none;
   transition: all 0.3s ease;
 }
-
 .nav a:hover {
   text-decoration: underline;
   color: #ffcc00;
 }
-
 .burger {
   background: none;
   border: none;
@@ -99,15 +101,15 @@
 /* ==== TABLET (768px+) ==== */
 @media screen and (min-width: 768px) {
   .header {
-    padding: 20px 0;
+    /* padding: 20px 0; */
+    /* padding-block: 20px; */
+    height: 84px;
   }
   .header_container {
     /* padding-inline: 36px; */
-    justify-content: center;
-  }
-  .header.compact {
-    padding-top: 18px;
-    padding-bottom: 18px;
+    /* justify-content: center; */
+    justify-content: space-between;
+    /* padding-block: 20px; */
   }
   .header_container.withElements {
     justify-content: space-between;
@@ -117,44 +119,56 @@
     gap: 20px;
   }
   .nav a.active {
-    font-weight: bold;
+    /* font-weight: bold; */
     text-decoration: underline;
     color: #00ffff;
   }
-
   .header .consultationBtn.showBtn {
-    display: inline-block;
-    height: 40px;
-    padding: 8px 16px;
+    /* display: inline-block; */
+    height: 44px;
+    padding: 13px 16px;
     font-size: 15px;
   }
-
-  .burger {
+  .header .consultationBtn.hide {
+    height: 44px;
+    padding: 8px 19px;
+  }
+   .burger {
     display: none;
+  }
+  .logoImg {
+    padding: 0 10px;
+    height: 40px;
   }
 }
 
 /* ==== DESKTOP (1440px+) ==== */
 @media screen and (min-width: 1280px) {
   .header {
-    padding: 28px 0;
+    /* padding: 28px 0; */
+    height: 106px;
   }
   .header_container {
     max-width: 1280px;
     margin: 0 auto;
-    padding-inline: 72px;
-  }
-  .header.compact {
-    padding-top: 22px;
-    padding-bottom: 22px;
+    /* padding-inline: 72px;
+    padding-block: 28px; */
   }
   .nav {
     gap: 24px;
   }
-
   .header .consultationBtn.showBtn {
+    font-size: 16px;
+    padding: 15px 24px;
+    height: 50px;
+  }
+  .header .consultationBtn.hide {
     font-size: 16px;
     padding: 10px 24px;
     height: 50px;
+  }
+  .logoImg {
+    height: 50px;
+    padding: 0 21px;
   }
 }

@@ -1,13 +1,13 @@
 .hero {
   width: 100vw;
   background: var(--header-footer);
-  padding: 30px 0;
+  padding: 100px 0 30px;
   transition: padding 0.5s ease;
 }
 
-.hero.shrink {
+/* .hero.shrink {
   padding: 10px 0;
-}
+} */
 
 .hero_container {
   display: flex;
@@ -17,28 +17,30 @@
   padding-inline: 16px;
 }
 .logo {
-  width: 280px;
-  height: 280px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   transition: opacity 0.5s ease, transform 0.5s ease;
   transform: translateY(0);
   opacity: 1;
 }
-.title {
-  /* color: var(--additional-text); */
-  color: #20c2c4;
-   font-size: 24px;
-  text-align: center;
-}
-
 .logo.hide {
   opacity: 0;
   transform: translateY(-40px);
   pointer-events: none;
 }
+.title {
+  /* color: var(--additional-text); */
+  color: #20c2c4;
+  /* color: #00bcd4; */
+   font-size: 24px;
+  text-align: center;
+}
 
 .consultationBtn {
   text-align: center;
-  color: var(--additional-text);
+  padding: 16px 16px;
+    color: var(--additional-text);
   width: 100%;
   max-width: 300px;
   height: 50px;
@@ -49,6 +51,7 @@
   transition: all 0.5s ease;
   transform: translateY(0);
   opacity: 1;
+  text-decoration: none;
  }
 .consultationBtn:hover {
   transform: scale(1.05);
@@ -63,22 +66,22 @@
 /* ==== TABLET (768px+) ==== */
 @media screen and (min-width: 768px) {
   .hero {
-    padding: 40px 0;
+    padding: 100px 0 40px;
   }
 
-  .hero.shrink {
+  /* .hero.shrink {
     padding: 20px 0;
-  }
+  } */
   .logo {
-    width: 400px;
-    height: 400px;
+    width: auto;
+  height: auto;
+
       }
   .title {
     font-size: 32px;
   }
 
   .consultationBtn {
-    height: 56px;
     font-size: 16px;
   }
 }
@@ -86,12 +89,12 @@
 /* ==== DESKTOP (1440px+) ==== */
 @media screen and (min-width: 1280px) {
   .hero {
-    padding: 60px 0;
+    padding: 130px 0 60px;
   }
 
-  .hero.shrink {
+  /* .hero.shrink {
     padding: 30px 0;
-  }
+  } */
 
   .hero_container {
     max-width: 1280px;
@@ -99,8 +102,9 @@
     padding-inline: 72px;
   }
   .logo {
-    width: 900px;
-    height: 900px;
+    width: auto;
+  height: auto;
+ 
       }
   .title {
     font-size: 40px;
@@ -108,6 +112,7 @@
 
   .consultationBtn {
     height: 60px;
+    padding: 20px 16px;
     font-size: 18px;
   }
 }

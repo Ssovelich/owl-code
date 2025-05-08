@@ -17,7 +17,7 @@ const Services = () => {
   };
 
   return (
-    <div className={styles.services}>
+    <div  className={styles.services}>
       <div id="services" className={`container ${styles.services_container}`}>
         <h2 className={styles.title}>Комплексні послуги</h2>
         <ul className={styles.list}>

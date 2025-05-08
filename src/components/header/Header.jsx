@@ -1,5 +1,5 @@
 import styles from "./Header.module.css";
-import logo from "../../../public/owl.jpg";
+import logo from "../../../public/ChatGPT Img white.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import MobileMenu from "../MobileMenu/MobileMenu.jsx";
 import { useEffect, useState } from "react";
@@ -31,18 +31,17 @@ const Header = ({ scrolled }) => {
   }, []);
 
   return (
-    <header
-      className={`${styles.header} ${
-        scrolled ? `${styles.scrolled} ${styles.compact}` : ""
-      }`}
-    >
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div
         className={`container ${styles.header_container} ${
           scrolled ? styles.withElements : ""
         }`}
       >
-        <a href="/"
-          className={`${styles.logoWrapper} ${scrolled ? styles.moveLogo : ""}`}
+        <a
+          href="/"
+          className={`${styles.logoWrapper} ${
+            scrolled ? styles.moveLogo : styles.hide
+          }`}
         >
           <img className={styles.logoImg} src={logo} alt="Logo" />
         </a>
@@ -74,13 +73,14 @@ const Header = ({ scrolled }) => {
           </a>
         </nav>
 
-        <button
+        <a
+          href="#consultation"
           className={`${styles.consultationBtn} ${
-            scrolled ? styles.showBtn : ""
+            scrolled ? styles.showBtn : styles.hide
           }`}
         >
           Консультація
-        </button>
+        </a>
 
         <button className={styles.burger} onClick={() => setMenuOpen(true)}>
           <GiHamburgerMenu size={24} />

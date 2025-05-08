@@ -1,4 +1,4 @@
-import logo from "../../../public/owl.jpg";
+import logo from "../../../public/ChatGPT Img white.png";
 import styles from "./Hero.module.css";
 
 const Hero = ({ scrolled }) => {
@@ -13,11 +13,11 @@ const Hero = ({ scrolled }) => {
         <h1 className={styles.title}>
           Створюємо сайти, які приносять результат
         </h1>
-        <button
+        <a href="#consultation"
           className={`${styles.consultationBtn} ${scrolled ? styles.hide : ''}`}
         >
           Замовити консультацію
-        </button>
+        </a>
       </div>
     </div>
   );

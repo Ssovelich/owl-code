@@ -88,11 +88,17 @@ body {
   padding-inline: 16px;
   margin-inline: auto;
 }
+html {
+  scroll-padding-top: 100px;
+}
 
 @media screen and (min-width: 768px) {
   .container {
     width: 768px;
     padding-inline: 36px;
+  }
+  html {
+    scroll-padding-top: 120px;
   }
 }
 
@@ -100,5 +106,8 @@ body {
   .container {
     width: 1280px;
     padding-inline: 72px;
+  }
+  html {
+    scroll-padding-top: 140px;
   }
 }
