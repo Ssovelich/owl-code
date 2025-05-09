@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./ModalCard.module.css";
 import { IoMdClose } from "react-icons/io";
 

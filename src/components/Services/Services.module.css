@@ -10,14 +10,14 @@
   gap: 24px;
 }
 .title {
-  margin-bottom: 18px;
+  font-size: 24px;
+  font-weight: bold;
   text-align: center;
 }
 .list {
   display: flex;
   flex-direction: column;
   gap: 16px;
-
 }
 .card {
   position: relative;

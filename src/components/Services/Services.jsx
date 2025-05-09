@@ -1,7 +1,6 @@
-import React from "react";
 import { BsArrowUpRight } from "react-icons/bs";
 import styles from "./Services.module.css";
-import cardData from "../cardData.json";
+import cardData from "../helpers/cardData";
 import { useState } from "react";
 import ModalCard from "../ModalCard/ModalCard";
 
