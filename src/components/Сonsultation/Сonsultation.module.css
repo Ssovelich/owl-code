@@ -89,3 +89,11 @@
 .button:hover {
   transform: scale(1.05);
 }
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+  text-align: left;
+  width: 100%;
+  padding-left: 16px;
+}
