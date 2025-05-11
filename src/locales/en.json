@@ -1,0 +1,36 @@
+{
+  "hero_title": "We create websites that bring results",
+  "get_consultation": "Get a consultation",
+  "services": "Services",
+  "about": "About us",
+  "advantages": "Advantages",
+  "contacts": "Contacts",
+  "consultation": "Consultation",
+
+  "services_title": "Comprehensive services",
+
+  "advantages_title": "Why us?",
+
+  "consultation_title": "Get a free consultation",
+  "name": "Your Name*",
+  "email": "Your Email*",
+  "phone": "Your Phone",
+  "message": "Message",
+  "send": "Request a Consultation",
+  "status_success": "Message sent successfully!",
+  "status_error": "Failed to send. Please try again.",
+
+  "validation": {
+    "name_min": "Too short!",
+    "name_max": "Too long!",
+    "name_required": "Name is required",
+    "email_invalid": "Invalid email format",
+    "email_required": "Email is required",
+    "phone_invalid": "Invalid phone number"
+  },
+
+  "language": "Language",
+  "menu_home": "Home",
+  "menu_services": "Services",
+  "menu_contact": "Contact"
+}

@@ -1,9 +1,10 @@
-import styles from "./Сonsultation.module.css";
+import styles from "./Consultation.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import emailjs from "emailjs-com";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../Loader/Loader";
-import {validationSchema} from "../../utils/schema";
+import {getValidationSchema} from "../../utils/schema";
+import { useTranslation } from 'react-i18next';
 
 const INITIAL_VALUES = {
   name: "",
@@ -13,6 +14,9 @@ const INITIAL_VALUES = {
 };
 
 const Сonsultation = () => {
+ const { t } = useTranslation();
+ const validationSchema = getValidationSchema(t);
+
   const sendEmail = async (values, { resetForm, setSubmitting }) => {
     try {
       await emailjs.send(
@@ -21,10 +25,10 @@ const Сonsultation = () => {
         values,
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
-      toast.success("Повідомлення успішно надіслано!");
+      toast.success(t('status_success'));
       resetForm();
     } catch (error) {
-      toast.error("Помилка при надсиланні. Спробуйте ще раз.");
+      toast.error(t('status_error'));
       console.error("EmailJS error:", error);
     } finally {
       setSubmitting(false);
@@ -37,7 +41,7 @@ const Сonsultation = () => {
         id="consultation"
         className={`container ${styles.consultation_container}`}
       >
-        <h2 className={styles.title}>Отримайте безкоштовну консультацію</h2>
+        <h2 className={styles.title}>{t('consultation_title')}</h2>
         <Toaster position="bottom-center" reverseOrder={false} />
 
         <Formik
@@ -55,7 +59,7 @@ const Сonsultation = () => {
                   className={styles.input}
                 />
                 <label htmlFor="name" className={styles.label}>
-                  Ваше ім'я*
+                  {t('name')}
                 </label>
                 <ErrorMessage
                   name="name"
@@ -72,7 +76,7 @@ const Сonsultation = () => {
                   className={styles.input}
                 />
                 <label htmlFor="email" className={styles.label}>
-                  Ваш Email*
+                  {t('email')}
                 </label>
                 <ErrorMessage
                   name="email"
@@ -89,7 +93,7 @@ const Сonsultation = () => {
                   className={styles.input}
                 />
                 <label htmlFor="phone" className={styles.label}>
-                  Ваш телефон
+                   {t('phone')}
                 </label>
                 <ErrorMessage
                   name="phone"
@@ -106,7 +110,7 @@ const Сonsultation = () => {
                   className={`${styles.input} ${styles.textarea}`}
                 />
                 <label htmlFor="message" className={styles.label}>
-                  Коментар
+                  {t('message')}
                 </label>
                 <ErrorMessage
                   name="message"
@@ -120,7 +124,7 @@ const Сonsultation = () => {
                 className={styles.button}
                 disabled={isSubmitting}
               >
-                {isSubmitting ? <Loader /> : "Замовити консультацію"}
+                {isSubmitting ? <Loader /> : t('send')}
               </button>
             </Form>
           )}

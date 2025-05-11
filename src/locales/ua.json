@@ -1,0 +1,36 @@
+{
+  "hero_title": "Створюємо сайти, які приносять результат",
+  "get_consultation": "Отримати консультацію",
+  "services": "Послуги",
+  "about": "Про нас",
+  "advantages": "Переваги",
+  "contacts": "Контакти",
+  "consultation": "Консультація",
+
+  "services_title": "Комплексні послуги",
+
+  "advantages_title": "Чому саме ми?",
+
+  "consultation_title": "Отримайте безкоштовну консультацію",
+  "name": "Ваше ім'я*",
+  "email": "Ваш Email*",
+  "phone": "Ваш телефон",
+  "message": "Коментар",
+  "send": "Замовити консультацію",
+  "status_success": "Повідомлення успішно надіслано!",
+  "status_error": "Помилка при надсиланні. Спробуйте ще раз.",
+
+  "validation": {
+    "name_min": "Занадто коротке!",
+    "name_max": "Занадто довге!",
+    "name_required": "Ім'я обов'язкове",
+    "email_invalid": "Невірний формат email",
+    "email_required": "Email обов'язковий",
+    "phone_invalid": "Некоректний номер телефону"
+  },
+
+  "language": "Мова",
+  "menu_home": "Головна",
+  "menu_services": "Послуги",
+  "menu_contact": "Контакти"
+}

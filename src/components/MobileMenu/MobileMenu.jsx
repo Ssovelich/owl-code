@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import styles from "./MobileMenu.module.css";
 import { IoMdClose } from "react-icons/io";
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
+import logo from "../../../public/owlGrey.png";
+import { useTranslation } from 'react-i18next';
 
 const MobileMenu = ({ onClose }) => {
   const [isClosing, setIsClosing] = useState(false);
+  const { t } = useTranslation();
 
   const handleClose = () => {
     setIsClosing(true);
@@ -29,7 +33,7 @@ const MobileMenu = ({ onClose }) => {
     const handleTouchEnd = (e) => {
       const touchEndX = e.changedTouches[0].clientX;
       if (touchStartX && touchStartX - touchEndX > 50) {
-        handleClose(); // свайп вліво
+        handleClose();
       }
     };
 
@@ -53,23 +57,29 @@ const MobileMenu = ({ onClose }) => {
         className={`${styles.menu} ${isClosing ? styles.closing : ""}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <button className={styles.closeBtn} onClick={handleClose}>
-          <IoMdClose />
-        </button>
+        <div className={styles.btnWrapper}>
+          <LanguageSwitcher
+            variant="black"
+          />
+          <button className={styles.closeBtn} onClick={handleClose}>
+            <IoMdClose />
+          </button>
+        </div>
         <nav className={styles.nav}>
           <a href="#services" onClick={handleLinkClick}>
-            Послуги
+            {t("services")}
           </a>
           <a href="#about" onClick={handleLinkClick}>
-            Про нас
+            {t("about")}
           </a>
           <a href="#advantages" onClick={handleLinkClick}>
-            Переваги
+            {t("advantages")}
           </a>
           <a href="#contacts" onClick={handleLinkClick}>
-            Контакти
+            {t("contacts")}
           </a>
         </nav>
+        <img src={logo} alt="Owl logo" />
       </div>
     </div>
   );

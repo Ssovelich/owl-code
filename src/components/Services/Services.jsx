@@ -1,11 +1,13 @@
 import { BsArrowUpRight } from "react-icons/bs";
 import styles from "./Services.module.css";
-import cardData from "../helpers/cardData";
+import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import ModalCard from "../ModalCard/ModalCard";
 
 const Services = () => {
   const [modalData, setModalData] = useState(null);
+  const { t } = useTranslation(["translation", "services"]);
+  const servicesData = t("cards", { ns: "services", returnObjects: true });
 
   const handleOpenModal = (card) => {
     setModalData(card);
@@ -16,11 +18,11 @@ const Services = () => {
   };
 
   return (
-    <div  className={styles.services}>
+    <div className={styles.services}>
       <div id="services" className={`container ${styles.services_container}`}>
-        <h2 className={styles.title}>Комплексні послуги</h2>
+        <h2 className={styles.title}>{t("services_title")}</h2>
         <ul className={styles.list}>
-          {cardData.map((card, index) => (
+          {servicesData.map((card, index) => (
             <li
               className={styles.card}
               key={index}

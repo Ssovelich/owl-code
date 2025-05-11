@@ -1,0 +1,24 @@
+{
+  "cards": [
+    {
+      "title": "Landing for Business",
+      "text": "A one-page site focused on selling a single product or service.",
+      "description": "Detailed description of a business landing page: structure, benefits, target audience, etc."
+    },
+    {
+      "title": "Corporate Website",
+      "text": "A website to present a company, its services, team, and contacts.",
+      "description": "In-depth look at corporate websites, structure examples, and strategies."
+    },
+    {
+      "title": "Business Card Site",
+      "text": "A small site with brief information about a person or company.",
+      "description": "Extended information about a business card site and when it’s effective."
+    },
+    {
+      "title": "Online Store",
+      "text": "A website to sell products online with a cart and payment system.",
+      "description": "All about creating an online store, functionality, integrations."
+    }
+  ]
+}

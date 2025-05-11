@@ -3,10 +3,13 @@ import logo from "../../../public/ChatGPT Img white.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import MobileMenu from "../MobileMenu/MobileMenu.jsx";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher.jsx";
 
 const Header = ({ scrolled }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("");
+  const { t } = useTranslation();
 
   useEffect(() => {
     const sectionIds = ["services", "about", "advantages", "contacts"];
@@ -51,25 +54,25 @@ const Header = ({ scrolled }) => {
             href="#services"
             className={activeId === "services" ? styles.active : ""}
           >
-            Послуги
+            {t("services")}
           </a>
           <a
             href="#about"
             className={activeId === "about" ? styles.active : ""}
           >
-            Про нас
+            {t("about")}
           </a>
           <a
             href="#advantages"
             className={activeId === "advantages" ? styles.active : ""}
           >
-            Переваги
+            {t("advantages")}
           </a>
           <a
             href="#contacts"
             className={activeId === "contacts" ? styles.active : ""}
           >
-            Контакти
+            {t("contacts")}
           </a>
         </nav>
 
@@ -79,8 +82,11 @@ const Header = ({ scrolled }) => {
             scrolled ? styles.showBtn : styles.hide
           }`}
         >
-          Консультація
+          {t("consultation")}
         </a>
+        <div className={styles.headerLangPosition}>
+          <LanguageSwitcher variant="white" className="headerLangPosition" />
+        </div>
 
         <button className={styles.burger} onClick={() => setMenuOpen(true)}>
           <GiHamburgerMenu size={24} />

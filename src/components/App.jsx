@@ -6,8 +6,10 @@ import Hero from "./Hero/Hero.jsx";
 import Services from './Services/Services.jsx';
 import Footer from "./Footer/Footer.jsx";
 // import Loader from "./Loader/Loader.jsx";
-import Сonsultation  from "./Сonsultation/Сonsultation.jsx";
+import Consultation  from "./Consultation/Consultation.jsx";
 import Advantages from './Advantages/Advantages.jsx';
+
+
 
 
 function App() {
@@ -29,7 +31,7 @@ function App() {
             <Hero scrolled={scrolled}/>
             <Services/> 
             <Advantages/>
-            <Сonsultation/>
+            <Consultation/>
           
          </main>
         <Footer />
