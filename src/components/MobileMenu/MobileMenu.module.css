@@ -1,12 +1,13 @@
 .backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 50;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-  animation: fadeIn 0.3s ease forwards;
+  animation: backdropFadeIn 0.5s ease forwards;
 }
 
 .menu {
@@ -20,19 +21,22 @@
   display: flex;
   flex-direction: column;
   gap: 50px;
-  animation: scaleSlideIn 0.35s ease forwards;
+  animation: menuEnter 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   transform-origin: top right;
-  box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  opacity: 0;
 }
 
 .menu.closing {
-  animation: scaleSlideOut 0.3s ease forwards;
+  animation: menuExit 0.45s ease forwards;
 }
-.btnWrapper{
+
+.btnWrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .closeBtn {
   padding: 0;
   background: none;
@@ -44,9 +48,11 @@
   align-items: center;
   justify-content: center;
 }
+
 .closeBtn:hover {
   transform: rotate(90deg);
 }
+
 .nav {
   display: flex;
   flex-direction: column;
@@ -65,35 +71,50 @@
   text-decoration: underline;
 }
 
-@keyframes fadeIn {
+.logo {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 220px;
+  align-self: center;
+}
+
+/* BACKDROP fade animation */
+@keyframes backdropFadeIn {
   from {
     background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
   }
   to {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
   }
 }
 
-@keyframes scaleSlideIn {
-  from {
-    transform: translate(30px, -30px) scale(0.5);
+/* MENU appear with bounce */
+@keyframes menuEnter {
+  0% {
+    transform: translateY(-40px) scale(0.95);
     opacity: 0;
   }
-  to {
-    transform: translate(0, 0) scale(1);
+  60% {
+    transform: translateY(8px) scale(1.02);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
 }
 
-@keyframes scaleSlideOut {
-  from {
-    transform: translate(0, 0) scale(1);
+/* MENU hide animation */
+@keyframes menuExit {
+  0% {
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
-  to {
-    transform: translate(30px, -30px) scale(0.5);
+  100% {
+    transform: translateY(-20px) scale(0.95);
     opacity: 0;
   }
 }
-
-

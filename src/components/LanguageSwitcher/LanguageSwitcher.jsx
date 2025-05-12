@@ -9,7 +9,7 @@ const LanguageSwitcher = ({ variant = 'white', className = '' }) => {
     const newLang = currentLang === 'ua' ? 'en' : 'ua';
     i18n.changeLanguage(newLang);
     localStorage.setItem('language', newLang);
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (

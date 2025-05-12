@@ -1,8 +1,7 @@
 import styles from "./Header.module.css";
 import logo from "../../../public/ChatGPT Img white.png";
-import { GiHamburgerMenu } from "react-icons/gi";
 import MobileMenu from "../MobileMenu/MobileMenu.jsx";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher.jsx";
 
@@ -10,6 +9,8 @@ const Header = ({ scrolled }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("");
   const { t } = useTranslation();
+ 
+  const burgerButtonRef = useRef(null);
 
   useEffect(() => {
     const sectionIds = ["services", "about", "advantages", "contacts"];
@@ -88,12 +89,24 @@ const Header = ({ scrolled }) => {
           <LanguageSwitcher variant="white" className="headerLangPosition" />
         </div>
 
-        <button className={styles.burger} onClick={() => setMenuOpen(true)}>
-          <GiHamburgerMenu size={24} />
+        <button
+        ref={burgerButtonRef}
+          className={`${styles.burger} ${menuOpen ? styles.open : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
+
       </div>
 
-      {menuOpen && <MobileMenu onClose={() => setMenuOpen(false)} />}
+   <MobileMenu
+  buttonRef={burgerButtonRef}
+  isOpen={menuOpen}
+  onClose={() => setMenuOpen(false)}
+/>
     </header>
   );
 };

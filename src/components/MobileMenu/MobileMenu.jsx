@@ -1,30 +1,77 @@
 import { useState, useEffect } from "react";
 import styles from "./MobileMenu.module.css";
-import { IoMdClose } from "react-icons/io";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import logo from "../../../public/owlGrey.png";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-const MobileMenu = ({ onClose }) => {
-  const [isClosing, setIsClosing] = useState(false);
+const ANIMATION_DURATION = 300;
+
+const MobileMenu = ({ onClose, isOpen, buttonRef }) => {
   const { t } = useTranslation();
+  const [isClosing, setIsClosing] = useState(false);
+  const [shouldRender, setShouldRender] = useState(isOpen);
+  const [menuPosition, setMenuPosition] = useState({ top: 0, right: 0 });
 
+  // Контроль відкриття/закриття
+  useEffect(() => {
+    if (isOpen) {
+      setShouldRender(true);
+      setIsClosing(false);
+    } else {
+      setIsClosing(true);
+      setTimeout(() => setShouldRender(false), ANIMATION_DURATION);
+    }
+  }, [isOpen]);
+
+  // Обчислення позиції після рендеру
+  useEffect(() => {
+    if (shouldRender && buttonRef?.current) {
+      requestAnimationFrame(() => {
+        const rect = buttonRef.current.getBoundingClientRect();
+        const rightOffset = window.innerWidth - rect.right;
+        setMenuPosition({
+          top: rect.top - 24,
+      right: rightOffset - 24,
+        });
+      });
+    }
+  }, [shouldRender, buttonRef]);
+
+  // Заборона скролу
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  // Закриття з анімацією
   const handleClose = () => {
-    setIsClosing(true);
-    setTimeout(onClose, 300);
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Escape") {
-      handleClose();
+    if (!isClosing) {
+      setIsClosing(true);
+      setTimeout(() => {
+        onClose();
+      }, ANIMATION_DURATION);
     }
   };
 
+  // Події: Esc, свайп
   useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        handleClose();
+      }
+    };
+
     document.addEventListener("keydown", handleKeyDown);
 
-    let touchStartX = null;
     const menuEl = document.querySelector(`.${styles.menu}`);
+    let touchStartX = null;
 
     const handleTouchStart = (e) => {
       touchStartX = e.touches[0].clientX;
@@ -47,24 +94,25 @@ const MobileMenu = ({ onClose }) => {
     };
   }, []);
 
-  const handleLinkClick = () => {
-    handleClose();
-  };
+  const handleLinkClick = () => handleClose();
+
+  if (!shouldRender) return null;
 
   return (
     <div className={styles.backdrop} onClick={handleClose}>
       <div
         className={`${styles.menu} ${isClosing ? styles.closing : ""}`}
         onClick={(e) => e.stopPropagation()}
+        style={{
+          position: "fixed",
+          top: `${menuPosition.top}px`,
+          right: `${menuPosition.right}px`,
+        }}
       >
         <div className={styles.btnWrapper}>
-          <LanguageSwitcher
-            variant="black"
-          />
-          <button className={styles.closeBtn} onClick={handleClose}>
-            <IoMdClose />
-          </button>
+          <LanguageSwitcher variant="black" />
         </div>
+
         <nav className={styles.nav}>
           <a href="#services" onClick={handleLinkClick}>
             {t("services")}
@@ -79,7 +127,7 @@ const MobileMenu = ({ onClose }) => {
             {t("contacts")}
           </a>
         </nav>
-        <img src={logo} alt="Owl logo" />
+        <img className={styles.logo} src={logo} alt="Owl logo" />
       </div>
     </div>
   );
