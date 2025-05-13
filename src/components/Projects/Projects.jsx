@@ -20,7 +20,7 @@ const Projects = () => {
   return (
     <div className={styles.projects}>
       <div id="projects" className={`container ${styles.projects_container}`}>
-        <h2 className={styles.title}>Мої проєкти</h2>
+        <h2 className={styles.title}>Наші проєкти</h2>
 
         <div className={styles.card}>
           <div className={styles.imageWrapper}>
@@ -30,7 +30,7 @@ const Projects = () => {
             <h3 className={styles.titleInfo}>{title}</h3>
             <p className={styles.textInfo}>{description}</p>
             <a className={styles.linkInfo} href={link} target="_blank" rel="noopener noreferrer">
-              View Project
+              Переглянути проект
                <BsArrowUpRight className={styles.icon} />
             </a>
           </div>
