@@ -1,0 +1,128 @@
+.projects {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.projects_container {
+}
+.title {
+  margin-bottom: 24px;
+}
+.card {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.imageWrapper {
+  width: 50%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  width: 50%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .info h3 {
+  margin: 0 0 10px;
+}
+
+.info p {
+  margin-bottom: 10px;
+} */
+
+/* .info a {
+  color: #20c2c4;
+  text-decoration: none;
+  font-weight: bold;
+} */
+.titleInfo {
+  margin: 0 0 10px;
+}
+
+.textInfo {
+  /* margin-bottom: 10px; */
+}
+.linkInfo {
+  margin-top: auto;
+  color: #20c2c4;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.3s;
+}
+.icon {
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.3s;
+  height: 24px;
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+}
+.linkInfo:hover .icon {
+  opacity: 1;
+  transform: translateX(0);
+  border: 1px solid #20c2c4;
+}
+
+.linkInfo:hover {
+  text-decoration: underline;
+}
+
+.controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.arrow {
+  background: none;
+  border: 2px solid #20c2c4;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.arrowIcon {
+  transform: rotate(45deg);
+  font-size: 18px;
+  transition: transform 0.3s;
+}
+.arrowLeft .arrowIcon {
+  transform: rotate(225deg);
+}
+.arrow:hover {
+  background: #20c2c4;
+  color: #fff;
+}
+.arrow:active {
+ scale: 0.9;
+}
