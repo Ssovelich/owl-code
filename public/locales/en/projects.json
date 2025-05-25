@@ -1,0 +1,14 @@
+{
+  "0": {
+    "title": "Project One",
+    "description": "A full-featured web application developed using React and Firebase, featuring real-time data synchronization, user authentication, and cloud-based storage. Ideal for collaborative environments and productivity tools."
+  },
+  "1": {
+    "title": "Project Two",
+    "description": "A modern, responsive landing page created with React, animated transitions using Framer Motion, and multilingual support via i18next. Designed to provide a seamless user experience across devices and languages."
+  },
+  "2": {
+    "title": "Project Three",
+    "description": "A sleek portfolio website showcasing creative work and client projects, built with React and styled-components. Includes a custom image gallery, dynamic contact form, and optimized performance for SEO."
+  }
+}

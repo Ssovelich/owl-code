@@ -1,0 +1,45 @@
+.footer{
+     background-color: var(--black);
+     padding: 68px 0 40px;
+}
+.footer_container {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+.logoImg {
+  height: 40px;
+}
+.text{
+    color: var(--white);
+}
+.nav
+{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.nav a {
+  color: var(--additional-text);
+  
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.nav a:hover {
+  text-decoration: underline;
+  color: var(--accent);
+}
+.socials{
+    display: flex;
+    justify-content: center;
+    gap: 51px;
+}
+.icon {
+  width: 48px;
+  height: 48px;
+  color: var(--white);
+  transition: all 0.5s ease;
+}
+.icon:hover {
+  color: var(--accent);
+}

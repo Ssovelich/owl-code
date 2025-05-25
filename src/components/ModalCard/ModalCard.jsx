@@ -12,6 +12,7 @@ const ModalCard = ({ isOpen, onClose, title, description }) => {
         </button>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.description}>{description}</p>
+        
       </div>
     </div>
   );

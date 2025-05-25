@@ -1,22 +1,16 @@
 [
   {
     "id": 1,
-    "title": "Project One",
-    "description": "A full-featured web application developed using React and Firebase, featuring real-time data synchronization, user authentication, and cloud-based storage. Ideal for collaborative environments and productivity tools.",
-    "image": "/images/project1.jpg",
+   "image": "/images/project1.jpg",
     "link": "https://example.com/project1"
   },
   {
     "id": 2,
-    "title": "Project Two",
-    "description": "A modern, responsive landing page created with React, animated transitions using Framer Motion, and multilingual support via i18next. Designed to provide a seamless user experience across devices and languages.",
-    "image": "/images/project2.jpg",
+   "image": "/images/project2.jpg",
     "link": "https://example.com/project2"
   },
   {
     "id": 3,
-    "title": "Project Three",
-    "description": "A sleek portfolio website showcasing creative work and client projects, built with React and styled-components. Includes a custom image gallery, dynamic contact form, and optimized performance for SEO.",
     "image": "/images/project3.jpg",
     "link": "https://example.com/project3"
   }

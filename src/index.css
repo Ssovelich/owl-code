@@ -1,20 +1,26 @@
 /* ROOT STYLES */
 
 :root {
-  --background: #f2f6ff;
+  --accent: #189ea3;
+  --accent-activ: #0f959a;
+  --white: #ffffff;
+  --black: #0d151d;
+  --background: #f6f9f9;
+  --error: #a32818;
+
   --header-footer: black;
   --input-backgroung: rgba(68, 127, 255, 0.07);
   --additional-text-title: #292828;
-  --red: #bb0505;
+
   --status: #10fd18;
-  --accent: #454d5d;
+
   --icon: #697a9e;
   --additional-text: #fdfdfd;
   --button-hover: #1654d7;
   --button-pressed: #0051ff;
   --button-notactive: #afb0b2;
   --button-without-icon: #2a51a5;
-  }
+}
 
 :root {
   --font-family: "Poppins", sans-serif;
@@ -81,6 +87,10 @@ body {
   flex-direction: column;
 }
 
+.bold {
+  font-weight: 600;
+}
+
 /* GLOBAL STYLES */
 
 .container {
@@ -102,10 +112,10 @@ html {
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1440px) {
   .container {
-    width: 1280px;
-    padding-inline: 72px;
+    width: 1440px;
+    padding-inline: 86px;
   }
   html {
     scroll-padding-top: 140px;

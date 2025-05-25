@@ -54,7 +54,7 @@
 .input:focus + .label,
 .input:not(:placeholder-shown) + .label {
   top: -18px;
-  left: 12px;
+  left: -4px;
   font-size: 16px;
   color: #20c2c4;
 }
@@ -90,10 +90,17 @@
   transform: scale(1.05);
 }
 .error {
-  color: red;
+  color: var(--error);
   font-size: 12px;
   margin-top: 4px;
   text-align: left;
   width: 100%;
-  padding-left: 16px;
+  padding-left: 0;
+}
+.inputError {
+  border-color: var(--error) !important;
+}
+
+.labelError {
+  color: var(--error) !important;
 }

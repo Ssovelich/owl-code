@@ -6,7 +6,7 @@
   left: 0;
   z-index: 999;
   transition: background-color 0.3s ease;
-  background-color: var(--header-footer);
+  background-color: var(--black);
 }
 .scrolled {
   background-color: rgba(0, 0, 0, 0.6);
@@ -35,9 +35,9 @@
   height: 35px;
   padding: 9px 12px;
   background-color: transparent;
-  border: 1px solid var(--additional-text);
-  color: var(--additional-text);
-  border-radius: 8px;
+  border: 3px solid var(--accent);
+  color: var(--accent);
+  border-radius: 16px;
   font-size: 14px;
   cursor: pointer;
   scale: 1;
@@ -80,12 +80,13 @@
 }
 .nav a {
   color: var(--additional-text);
+  
   text-decoration: none;
   transition: all 0.3s ease;
 }
 .nav a:hover {
   text-decoration: underline;
-  color: #ffcc00;
+  color: var(--accent);
 }
 /* .burger {
   background: none;
@@ -113,14 +114,14 @@
   display: block;
   height: 3px;
   width: 100%;
-  background-color: var(--additional-text);
+  background-color: var(--accent);
   border-radius: 2px;
   transition: all 0.4s ease-in-out;
   transform-origin: center;
 }
 
 .burger.open span {
-  background-color: black;
+  background-color: var(--black);
 }
 /* Анімація до хрестика */
 .burger.open span:nth-child(1) {
@@ -168,7 +169,7 @@
   }
   .nav a.active {
     text-decoration: underline;
-    color: #00ffff;
+    color: var(--accent-activ);
   }
   .header .consultationBtn.showBtn {
     height: 44px;
@@ -188,15 +189,15 @@
   }
 }
 
-/* ==== DESKTOP (1280px+) ==== */
-@media screen and (min-width: 1280px) {
+/* ==== DESKTOP (1440px+) ==== */
+@media screen and (min-width: 1440px) {
   .header {
     height: 106px;
   }
   .header_container {
-    max-width: 1280px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding-inline: 72px;
+    padding-inline: 86px;
   }
   .nav {
     gap: 24px;

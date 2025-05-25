@@ -34,6 +34,7 @@
   padding-left: 100px;
 }
 .badge {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,11 +42,14 @@
   min-width: 32px;
 }
 .number {
-  color: black;
+  position: absolute;
+  top: 50%;
+  transform: translateY(12%);
+  color: var(--accent);
   text-align: center;
   line-height: 40px;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 52px;
 }
 .text {
   flex: 1;

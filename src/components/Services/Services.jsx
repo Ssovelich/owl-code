@@ -6,8 +6,8 @@ import ModalCard from "../ModalCard/ModalCard";
 
 const Services = () => {
   const [modalData, setModalData] = useState(null);
-  const { t } = useTranslation(["translation", "services"]);
-  const servicesData = t("cards", { ns: "services", returnObjects: true });
+  const { t } = useTranslation("services");
+  const servicesData = t("cards", { returnObjects: true });
 
   const handleOpenModal = (card) => {
     setModalData(card);
@@ -20,7 +20,7 @@ const Services = () => {
   return (
     <div className={styles.services}>
       <div id="services" className={`container ${styles.services_container}`}>
-        <h2 className={styles.title}>{t("services_title")}</h2>
+        <h2 className={styles.title}>{t("common:services_title")}</h2>
         <ul className={styles.list}>
           {servicesData.map((card, index) => (
             <li

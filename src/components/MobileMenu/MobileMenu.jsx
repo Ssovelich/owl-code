@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 const ANIMATION_DURATION = 300;
 
 const MobileMenu = ({ onClose, isOpen, buttonRef }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const [isClosing, setIsClosing] = useState(false);
   const [shouldRender, setShouldRender] = useState(isOpen);
   const [menuPosition, setMenuPosition] = useState({ top: 0, right: 0 });

@@ -3,13 +3,19 @@
   "get_consultation": "Get a consultation",
   "services": "Services",
   "about": "About us",
+  "projects": "Projects",
   "advantages": "Advantages",
   "contacts": "Contacts",
   "consultation": "Consultation",
 
   "services_title": "Comprehensive services",
 
+  "about_title": "About us",
+
   "advantages_title": "Why us?",
+
+   "projects_title": "Our Projects",
+  "view_project": "View Project",
 
   "consultation_title": "Get a free consultation",
   "name": "Your Name*",
@@ -29,8 +35,7 @@
     "phone_invalid": "Invalid phone number"
   },
 
-  "language": "Language",
-  "menu_home": "Home",
-  "menu_services": "Services",
-  "menu_contact": "Contact"
+
+
+  "footer_text": "We create websites that bring results"
 }

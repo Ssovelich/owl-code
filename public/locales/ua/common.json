@@ -3,13 +3,19 @@
   "get_consultation": "Отримати консультацію",
   "services": "Послуги",
   "about": "Про нас",
+  "projects": "Проекти",
   "advantages": "Переваги",
   "contacts": "Контакти",
   "consultation": "Консультація",
 
   "services_title": "Комплексні послуги",
 
+  "about_title": "Про нас",
+
   "advantages_title": "Чому саме ми?",
+
+  "projects_title": "Наші проєкти",
+  "view_project": "Переглянути проєкт",
 
   "consultation_title": "Отримайте безкоштовну консультацію",
   "name": "Ваше ім'я*",
@@ -29,8 +35,8 @@
     "phone_invalid": "Некоректний номер телефону"
   },
 
-  "language": "Мова",
-  "menu_home": "Головна",
-  "menu_services": "Послуги",
-  "menu_contact": "Контакти"
+
+
+
+  "footer_text": "Створюємо сайти, які приносять результат"
 }

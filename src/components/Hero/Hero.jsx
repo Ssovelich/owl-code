@@ -3,7 +3,7 @@ import styles from './Hero.module.css';
 import { useTranslation } from 'react-i18next';
 
 const Hero = ({ scrolled }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
 
   return (
     <div className={styles.hero}>

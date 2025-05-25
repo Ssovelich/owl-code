@@ -1,6 +1,6 @@
 .hero {
   width: 100vw;
-  background: var(--header-footer);
+  background: var(--black);
   padding: 100px 0 30px;
   transition: padding 0.5s ease;
 }
@@ -30,32 +30,35 @@
   pointer-events: none;
 }
 .title {
-  /* color: var(--additional-text); */
-  color: #20c2c4;
-  /* color: #00bcd4; */
-   font-size: 24px;
+  color: var(--white);
+  font-size: 24px;
   text-align: center;
 }
-
 .consultationBtn {
   text-align: center;
   padding: 16px 16px;
-    color: var(--additional-text);
+  color: var(--white);
   width: 100%;
   max-width: 300px;
   height: 50px;
-  background-color: transparent;
-  font-size: medium;
-  border: 1px solid var(--additional-text);
-  border-radius: 8px;
-  transition: all 0.5s ease;
+  background-color: var(--accent);
+  font-weight: 400;
+  font-size: 36px;
+  border: 2px solid var(--accent);
+  border-radius: 16px;
   transform: translateY(0);
   opacity: 1;
   text-decoration: none;
- }
+  transition: all 0.5s ease;
+}
 .consultationBtn:hover {
-  transform: scale(1.05);
-   }
+  border: 2px solid var(--white);
+  font-weight: 600;
+}
+.consultationBtn:active{
+  border: 2px solid var(--accent-activ);
+  background-color: var(--accent-activ);
+}
 
 .consultationBtn.hide {
   opacity: 0;
@@ -74,9 +77,8 @@
   } */
   .logo {
     width: auto;
-  height: auto;
-
-      }
+    height: auto;
+  }
   .title {
     font-size: 32px;
   }
@@ -103,9 +105,8 @@
   }
   .logo {
     width: auto;
-  height: auto;
- 
-      }
+    height: auto;
+  }
   .title {
     font-size: 40px;
   }

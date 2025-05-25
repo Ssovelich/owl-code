@@ -8,31 +8,37 @@ import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher.jsx";
 const Header = ({ scrolled }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("");
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
  
   const burgerButtonRef = useRef(null);
 
   useEffect(() => {
-    const sectionIds = ["services", "about", "advantages", "contacts"];
+  const sectionIds = ["services", "about", "projects", "advantages", "contacts"];
+  const offset = 130; // висота хедера
 
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 130;
+  const handleScroll = () => {
+    let currentSectionId = "";
 
-      let currentSectionId = "";
-      for (let id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= scrollPosition) {
+    for (const id of sectionIds) {
+      const section = document.getElementById(id);
+      if (section) {
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top <= offset && rect.bottom > offset) {
           currentSectionId = id;
+          break;
         }
       }
-      setActiveId(currentSectionId);
-    };
+    }
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
+    setActiveId(currentSectionId);
+  };
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  window.addEventListener("scroll", handleScroll);
+  handleScroll();
+
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
 
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
@@ -62,6 +68,12 @@ const Header = ({ scrolled }) => {
             className={activeId === "about" ? styles.active : ""}
           >
             {t("about")}
+          </a>
+          <a
+            href="#projects"
+            className={activeId === "projects" ? styles.active : ""}
+          >
+            {t("projects")}
           </a>
           <a
             href="#advantages"
