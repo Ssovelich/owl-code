@@ -1,24 +1,54 @@
 {
   "cards": [
     {
-      "title": "Landing for Business",
+      "title": "Landing page for business",
       "text": "This is a small, one-page site that encourages the customer to take one specific action: for example, subscribe to a newsletter or order a product.",
-      "description": "Detailed description of a business landing page: structure, benefits, target audience, etc."
+      "description": [
+        "The perfect way to promote a new product.",
+        "With a landing page, you can introduce a new product to potential customers. Leads will have the opportunity to read about the features and benefits of the product on the web page. Thus, you will focus their attention on new products or services.",
+        "Simple decision-making process.",
+        "On a landing page, you provide visitors with information about a single product, which speeds up the decision-making process. They can focus on the relevant information without any other distractions and decide whether they want to proceed further."
+      ]
     },
     {
-      "title": "Corporate Website",
+      "title": "Corporate website",
       "text": "This is a site with a specific catalog, through which goods are sold directly to the consumer, including delivery.",
-      "description": "In-depth look at corporate websites, structure examples, and strategies."
+      "description": {
+        "paragraphs": [
+          "A corporate website is the official representation of a company on the Internet.",
+          "Typically, such a resource contains the company's history, mission, values, and vacancies. It also contains news, contacts, and may describe technological processes.",
+          "The list of goals for creating a corporate website can be expanded. They depend on what goal the owner wants to achieve."
+        ],
+        "listTitle": "The main goals of its creation are as follows:",
+        "list": [
+          "building a recognizable brand;",
+          "attracting customers, partners and employees;",
+          "informing visitors about their activities and products."
+        ]
+      }
     },
     {
-      "title": "Business Card Site",
+      "title": "Business card website",
       "text": "It is a virtual business card of a company or individual. The purpose is to introduce potential customers to the brand or its services.",
-      "description": "Extended information about a business card site and when it’s effective."
+      "description": {
+        "paragraphs": [
+          "A business card website is a virtual business card of a company or individual.",
+          "It is an important tool for presenting your company's services or personal brand. It provides information about you or your business.",
+          "With the help of such a site, you can attract new customers and maintain the interest of existing ones. For example, you can run a useful blog on the site or talk about promotions."
+        ],
+        "listTitle": "Standard sections of a business card site:",
+        "list": ["Company information.", "Catalog.", "Contacts."]
+      }
     },
     {
-      "title": "Online Store",
+      "title": "Online store",
       "text": "This is a site with a specific catalog, through which goods are sold directly to the consumer, including delivery.",
-      "description": "All about creating an online store, functionality, integrations."
+      "description": [
+        "An online store is a website with a product catalog that provides direct sales of products to the consumer, including their delivery.",
+        "All interaction — from familiarizing yourself with the product and placing an order to concluding a transaction — takes place directly on the website. The main difference between an online store and a traditional one is the lack of need for physical infrastructure.",
+        "If a regular store requires a sales floor, staff, display cases, and other equipment, an online store implements all these functions using software.",
+        "Opening your own online store is a step towards a higher level of customer service, which contributes not only to increased sales, but also to improving the company's image in the eyes of consumers."
+      ]
     }
   ]
 }
