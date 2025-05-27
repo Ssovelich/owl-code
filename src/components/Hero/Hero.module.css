@@ -1,14 +1,9 @@
 .hero {
   width: 100vw;
   background: var(--black);
-  padding: 100px 0 30px;
+  padding: 185px 0 30px;
   transition: padding 0.5s ease;
 }
-
-/* .hero.shrink {
-  padding: 10px 0;
-} */
-
 .hero_container {
   display: flex;
   flex-direction: column;
@@ -31,21 +26,26 @@
 }
 .title {
   color: var(--white);
-  font-size: 24px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 160%;
   text-align: center;
 }
 .consultationBtn {
-  text-align: center;
-  padding: 16px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* text-align: center; */
+  /* padding: 16px 16px; */
   color: var(--white);
   width: 100%;
-  max-width: 300px;
-  height: 50px;
+  /* max-width: 342px; */
+  height: 45px;
   background-color: var(--accent);
-  font-weight: 400;
-  font-size: 36px;
+  font-weight: 500;
+  font-size: 24px;
   border: 2px solid var(--accent);
-  border-radius: 16px;
+  border-radius: 8px;
   transform: translateY(0);
   opacity: 1;
   text-decoration: none;
@@ -53,13 +53,11 @@
 }
 .consultationBtn:hover {
   border: 2px solid var(--white);
-  font-weight: 600;
 }
-.consultationBtn:active{
-  border: 2px solid var(--accent-activ);
+.consultationBtn:active {
+  border: 2px solid var(--black);
   background-color: var(--accent-activ);
 }
-
 .consultationBtn.hide {
   opacity: 0;
   transform: translateY(40px);
@@ -67,14 +65,13 @@
 }
 
 /* ==== TABLET (768px+) ==== */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 744px) {
   .hero {
-    padding: 100px 0 40px;
+    padding: 225px 0 40px;
   }
-
-  /* .hero.shrink {
-    padding: 20px 0;
-  } */
+  .hero_container {
+    gap: 36px;
+}
   .logo {
     width: auto;
     height: auto;
@@ -82,24 +79,22 @@
   .title {
     font-size: 32px;
   }
-
   .consultationBtn {
-    font-size: 16px;
+    font-size: 30px;
+    border-radius: 16px;
+    width: 387px;
+    height: 68px;
   }
 }
 
 /* ==== DESKTOP (1440px+) ==== */
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1440px) {
   .hero {
-    padding: 130px 0 60px;
+    padding: 235px 0 60px;
   }
-
-  /* .hero.shrink {
-    padding: 30px 0;
-  } */
-
   .hero_container {
     max-width: 1280px;
+    gap: 48px;
     margin: 0 auto;
     padding-inline: 72px;
   }
@@ -110,10 +105,9 @@
   .title {
     font-size: 40px;
   }
-
   .consultationBtn {
-    height: 60px;
-    padding: 20px 16px;
-    font-size: 18px;
+    width: 463px;
+    height: 76px;
+    font-size: 36px;
   }
 }

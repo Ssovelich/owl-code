@@ -8,37 +8,43 @@ import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher.jsx";
 const Header = ({ scrolled }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("");
-  const { t } = useTranslation('common');
- 
+  const { t } = useTranslation("common");
+
   const burgerButtonRef = useRef(null);
 
   useEffect(() => {
-  const sectionIds = ["services", "about", "projects", "advantages", "contacts"];
-  const offset = 130; // висота хедера
+    const sectionIds = [
+      "services",
+      "about",
+      "projects",
+      "advantages",
+      "contacts",
+    ];
+    const offset = 136; // висота хедера
 
-  const handleScroll = () => {
-    let currentSectionId = "";
+    const handleScroll = () => {
+      let currentSectionId = "";
 
-    for (const id of sectionIds) {
-      const section = document.getElementById(id);
-      if (section) {
-        const rect = section.getBoundingClientRect();
+      for (const id of sectionIds) {
+        const section = document.getElementById(id);
+        if (section) {
+          const rect = section.getBoundingClientRect();
 
-        if (rect.top <= offset && rect.bottom > offset) {
-          currentSectionId = id;
-          break;
+          if (rect.top <= offset && rect.bottom > offset) {
+            currentSectionId = id;
+            break;
+          }
         }
       }
-    }
 
-    setActiveId(currentSectionId);
-  };
+      setActiveId(currentSectionId);
+    };
 
-  window.addEventListener("scroll", handleScroll);
-  handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
@@ -102,7 +108,7 @@ const Header = ({ scrolled }) => {
         </div>
 
         <button
-        ref={burgerButtonRef}
+          ref={burgerButtonRef}
           className={`${styles.burger} ${menuOpen ? styles.open : ""}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
@@ -111,14 +117,13 @@ const Header = ({ scrolled }) => {
           <span></span>
           <span></span>
         </button>
-
       </div>
 
-   <MobileMenu
-  buttonRef={burgerButtonRef}
-  isOpen={menuOpen}
-  onClose={() => setMenuOpen(false)}
-/>
+      <MobileMenu
+        buttonRef={burgerButtonRef}
+        isOpen={menuOpen}
+        onClose={() => setMenuOpen(false)}
+      />
     </header>
   );
 };

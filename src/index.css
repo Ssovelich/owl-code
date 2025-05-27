@@ -94,7 +94,7 @@ body {
 /* GLOBAL STYLES */
 
 .container {
-  width: 360px;
+  width: 375px;
   padding-inline: 16px;
   margin-inline: auto;
 }
@@ -102,9 +102,9 @@ html {
   scroll-padding-top: 100px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 744px) {
   .container {
-    width: 768px;
+    width: 744px;
     padding-inline: 36px;
   }
   html {
@@ -115,7 +115,7 @@ html {
 @media screen and (min-width: 1440px) {
   .container {
     width: 1440px;
-    padding-inline: 86px;
+    padding-inline: 80px;
   }
   html {
     scroll-padding-top: 140px;

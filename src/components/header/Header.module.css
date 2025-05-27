@@ -1,6 +1,6 @@
 .header {
   width: 100vw;
-  height: 64px;
+  height: 136px;
   position: fixed;
   top: 0;
   left: 0;
@@ -18,6 +18,7 @@
   transform: translateY(40px);
   transition: transform 0.5s ease, opacity 0.5s ease;
   pointer-events: none;
+  margin-right: auto;
 }
 .logoWrapper.moveLogo {
   opacity: 1;
@@ -31,28 +32,35 @@
 .header .consultationBtn {
   opacity: 0;
   transform: translateY(40px);
-  display: inline-block;
-  height: 35px;
-  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 132px;
+  /* padding: 8px; */
   background-color: transparent;
-  border: 3px solid var(--accent);
+  border: 2px solid var(--accent);
   color: var(--accent);
-  border-radius: 16px;
-  font-size: 14px;
+  border-radius: 8px;
+  font-weight: 400;
+  font-size: 18px;
   cursor: pointer;
-  scale: 1;
-  transition: all 0.5s ease;
+  /* scale: 1; */
+  
   pointer-events: none;
   text-decoration: none;
   text-align: center;
+  margin-right: 24px;
+  transition: all 0.5s ease;
 }
 .header .consultationBtn:hover {
-  scale: 1.05;
+  border: 2px solid var( --white);
+  color: var(--white);
 }
 .header .consultationBtn.showBtn {
   opacity: 1;
   transform: translateY(0);
-  display: inline-block;
+  /* display: inline-block; */
   pointer-events: auto;
 }
 .header .consultationBtn.hide {
@@ -63,12 +71,12 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  /* justify-content: space-between; */
+  /* gap: 16px; */
   height: 100%;
 }
 .header_container.withElements {
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 .logoImg {
   width: auto;
@@ -79,8 +87,8 @@
   display: none;
 }
 .nav a {
-  color: var(--additional-text);
-  
+  color: var(--white);
+
   text-decoration: none;
   transition: all 0.3s ease;
 }
@@ -120,9 +128,9 @@
   transform-origin: center;
 }
 
-.burger.open span {
+/* .burger.open span {
   background-color: var(--black);
-}
+} */
 /* Анімація до хрестика */
 .burger.open span:nth-child(1) {
   transform: rotate(45deg) translate(8px, 8px);
@@ -136,6 +144,9 @@
 .burger.open span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
+.burger:hover span {
+  background-color: var(--white);
+}
 
 .headerLangPosition {
   position: absolute;
@@ -145,54 +156,91 @@
   z-index: 1;
 }
 
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 743px) {
   .headerLangPosition {
     display: none;
   }
-}
+} */
 
 /* ==== TABLET (768px+) ==== */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 744px) {
   .header {
-    height: 84px;
+    height: 136px;
   }
   .header_container {
-    justify-content: space-between;
-    padding-inline: 60px;
+    /* justify-content: space-between; */
+    /* padding-inline: 60px; */
   }
   .header_container.withElements {
     justify-content: space-between;
   }
-  .nav {
+  /* .nav {
     display: flex;
     gap: 20px;
   }
   .nav a.active {
     text-decoration: underline;
     color: var(--accent-activ);
+  } */
+  .header .consultationBtn {
+    margin-right: 35px;
+    border: 3px solid var(--accent);
+    border-radius: 16px;
+
+    font-size: 30px;
+    width: 226px;
+    height: 68px;
   }
   .header .consultationBtn.showBtn {
-    height: 44px;
+    /* height: 44px; */
     padding: 13px 16px;
-    font-size: 15px;
+    /* font-size: 15px; */
   }
   .header .consultationBtn.hide {
-    height: 44px;
+    /* height: 44px; */
     padding: 8px 19px;
   }
-   .burger {
+  /* .burger {
     display: none;
-  }
+  } */
   .logoImg {
     padding: 0 10px;
-    height: 40px;
+    height: 68px;
+  }
+  .burger {
+    width: 68px;
+    height: 68px;
+    background: none;
+    border: 3px solid var(--accent);
+    border-radius: 16px;
+    padding: 16px;
+    z-index: 1001; /* вище MobileMenu */
+  }
+  .burger span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background-color: var(--accent);
+  border-radius: 3px;
+}
+.burger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(9px, 9px);
+}
+.burger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(9px, -9px);
+}
+}
+
+@media screen and (max-width: 1439px) {
+  .headerLangPosition {
+    display: none;
   }
 }
 
 /* ==== DESKTOP (1440px+) ==== */
 @media screen and (min-width: 1440px) {
   .header {
-    height: 106px;
+    height: 150px;
   }
   .header_container {
     max-width: 1440px;
@@ -200,20 +248,31 @@
     padding-inline: 86px;
   }
   .nav {
-    gap: 24px;
+    display: flex;
+    gap: 40px;
+    margin-inline: auto;
+    font-weight: 400;
+font-size: 24px;
   }
+  .nav a.active {
+    text-decoration: underline;
+    color: var(--accent-activ);
+  }
+
   .header .consultationBtn.showBtn {
-    font-size: 16px;
+    font-size: 24px;
     padding: 15px 24px;
-    height: 50px;
+    /* height: 50px; */
   }
   .header .consultationBtn.hide {
     font-size: 16px;
     padding: 10px 24px;
     height: 50px;
   }
+  .burger {
+    display: none;
+  }
   .logoImg {
-    height: 50px;
     padding: 0 21px;
   }
 }

@@ -3,11 +3,12 @@ import styles from "./MobileMenu.module.css";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import logo from "../../../public/owlGrey.png";
 import { useTranslation } from "react-i18next";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 const ANIMATION_DURATION = 300;
 
 const MobileMenu = ({ onClose, isOpen, buttonRef }) => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
   const [isClosing, setIsClosing] = useState(false);
   const [shouldRender, setShouldRender] = useState(isOpen);
   const [menuPosition, setMenuPosition] = useState({ top: 0, right: 0 });
@@ -31,7 +32,7 @@ const MobileMenu = ({ onClose, isOpen, buttonRef }) => {
         const rightOffset = window.innerWidth - rect.right;
         setMenuPosition({
           top: rect.top - 24,
-      right: rightOffset - 24,
+          right: rightOffset - 24,
         });
       });
     }
@@ -109,24 +110,43 @@ const MobileMenu = ({ onClose, isOpen, buttonRef }) => {
           right: `${menuPosition.right}px`,
         }}
       >
-        <div className={styles.btnWrapper}>
-          <LanguageSwitcher variant="black" />
+        <div className={styles.btnLang}>
+          <LanguageSwitcher variant="white" />
         </div>
 
         <nav className={styles.nav}>
-          <a href="#services" onClick={handleLinkClick}>
+          <a
+            href="#services"
+            onClick={handleLinkClick}
+            className={styles.navLink}
+          >
             {t("services")}
+            <FaArrowRightLong size={24}/>
           </a>
-          <a href="#about" onClick={handleLinkClick}>
+          <a href="#about" onClick={handleLinkClick} className={styles.navLink}>
             {t("about")}
+            <FaArrowRightLong size={24}/>
           </a>
-          <a href="#advantages" onClick={handleLinkClick}>
+          <a
+            href="#advantages"
+            onClick={handleLinkClick}
+            className={styles.navLink}
+          >
             {t("advantages")}
+            <FaArrowRightLong size={24}/>
           </a>
-          <a href="#contacts" onClick={handleLinkClick}>
+          <a
+            href="#contacts"
+            onClick={handleLinkClick}
+            className={styles.navLink}
+          >
             {t("contacts")}
+            <FaArrowRightLong size={24}/>
           </a>
         </nav>
+        <a href="#consultation" className={styles.consultationBtn} onClick={handleLinkClick}>
+          {t("get_consultation")}
+        </a>
         <img className={styles.logo} src={logo} alt="Owl logo" />
       </div>
     </div>
