@@ -31,8 +31,8 @@ function App() {
         <Services />
         <Processes />
         <About />
-        <Advantages />
         <Projects />
+        <Advantages />
         <Consultation />
       </main>
       <Footer />

@@ -1,7 +1,7 @@
 .hero {
   width: 100vw;
   background: var(--black);
-  padding: 185px 0 30px;
+  padding: 185px 0 60px;
   transition: padding 0.5s ease;
 }
 .hero_container {
@@ -67,7 +67,7 @@
 /* ==== TABLET (768px+) ==== */
 @media screen and (min-width: 744px) {
   .hero {
-    padding: 225px 0 40px;
+    padding: 225px 0 96px;
   }
   .hero_container {
     gap: 36px;
@@ -90,7 +90,7 @@
 /* ==== DESKTOP (1440px+) ==== */
 @media screen and (min-width: 1440px) {
   .hero {
-    padding: 235px 0 60px;
+    padding: 235px 0 72px;
   }
   .hero_container {
     max-width: 1280px;
