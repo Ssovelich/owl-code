@@ -140,13 +140,13 @@
     font-size: 40px;
   }
   .list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 80px;
+    justify-items: start;
   }
-  .card {
-    width: calc(50% - 80px);
+   .card {
+    width: 100%;
   }
   .TitleItem {
     font-size: 36px;
