@@ -5,15 +5,14 @@ import logo from "../../../public/owlGrey.png";
 import { useTranslation } from "react-i18next";
 import { FaArrowRightLong } from "react-icons/fa6";
 
-const ANIMATION_DURATION = 300;
+const ANIMATION_DURATION = 400;
 
-const MobileMenu = ({ onClose, isOpen, buttonRef }) => {
+const MobileMenu = ({ onClose, isOpen }) => {
   const { t } = useTranslation("common");
   const [isClosing, setIsClosing] = useState(false);
   const [shouldRender, setShouldRender] = useState(isOpen);
-  const [menuPosition, setMenuPosition] = useState({ top: 0, right: 0 });
 
-  // Контроль відкриття/закриття
+  // Показ/приховування меню
   useEffect(() => {
     if (isOpen) {
       setShouldRender(true);
@@ -24,52 +23,40 @@ const MobileMenu = ({ onClose, isOpen, buttonRef }) => {
     }
   }, [isOpen]);
 
-  // Обчислення позиції після рендеру
-  useEffect(() => {
-    if (shouldRender && buttonRef?.current) {
-      requestAnimationFrame(() => {
-        const rect = buttonRef.current.getBoundingClientRect();
-        const rightOffset = window.innerWidth - rect.right;
-        setMenuPosition({
-          top: rect.top - 24,
-          right: rightOffset - 24,
-        });
-      });
-    }
-  }, [shouldRender, buttonRef]);
-
-  // Заборона скролу
+  // Блокування скролу і збереження відступу для scrollbar
   useEffect(() => {
     if (isOpen) {
+      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = `${scrollBarWidth}px`;
     } else {
       document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     }
 
     return () => {
       document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     };
   }, [isOpen]);
 
-  // Закриття з анімацією
-  const handleClose = () => {
-    if (!isClosing) {
-      setIsClosing(true);
-      setTimeout(() => {
+  // Закриття по таймеру
+  useEffect(() => {
+    if (isClosing) {
+      const timeout = setTimeout(() => {
         onClose();
       }, ANIMATION_DURATION);
+      return () => clearTimeout(timeout);
     }
-  };
+  }, [isClosing, onClose]);
 
-  // Події: Esc, свайп
+  // Esc + swipe закриття
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         handleClose();
       }
     };
-
-    document.addEventListener("keydown", handleKeyDown);
 
     const menuEl = document.querySelector(`.${styles.menu}`);
     let touchStartX = null;
@@ -85,6 +72,7 @@ const MobileMenu = ({ onClose, isOpen, buttonRef }) => {
       }
     };
 
+    document.addEventListener("keydown", handleKeyDown);
     menuEl?.addEventListener("touchstart", handleTouchStart);
     menuEl?.addEventListener("touchend", handleTouchEnd);
 
@@ -95,6 +83,12 @@ const MobileMenu = ({ onClose, isOpen, buttonRef }) => {
     };
   }, []);
 
+  const handleClose = () => {
+    if (!isClosing) {
+      setIsClosing(true);
+    }
+  };
+
   const handleLinkClick = () => handleClose();
 
   if (!shouldRender) return null;
@@ -104,49 +98,34 @@ const MobileMenu = ({ onClose, isOpen, buttonRef }) => {
       <div
         className={`${styles.menu} ${isClosing ? styles.closing : ""}`}
         onClick={(e) => e.stopPropagation()}
-        style={{
-          position: "fixed",
-          top: `${menuPosition.top}px`,
-          right: `${menuPosition.right}px`,
-        }}
       >
         <div className={styles.btnLang}>
           <LanguageSwitcher variant="white" />
         </div>
 
         <nav className={styles.nav}>
-          <a
-            href="#services"
-            onClick={handleLinkClick}
-            className={styles.navLink}
-          >
+          <a href="#services" onClick={handleLinkClick} className={styles.navLink}>
             {t("services")}
-            <FaArrowRightLong size={24}/>
+            <FaArrowRightLong size={24} />
           </a>
           <a href="#about" onClick={handleLinkClick} className={styles.navLink}>
             {t("about")}
-            <FaArrowRightLong size={24}/>
+            <FaArrowRightLong size={24} />
           </a>
-          <a
-            href="#advantages"
-            onClick={handleLinkClick}
-            className={styles.navLink}
-          >
+          <a href="#advantages" onClick={handleLinkClick} className={styles.navLink}>
             {t("advantages")}
-            <FaArrowRightLong size={24}/>
+            <FaArrowRightLong size={24} />
           </a>
-          <a
-            href="#contacts"
-            onClick={handleLinkClick}
-            className={styles.navLink}
-          >
+          <a href="#contacts" onClick={handleLinkClick} className={styles.navLink}>
             {t("contacts")}
-            <FaArrowRightLong size={24}/>
+            <FaArrowRightLong size={24} />
           </a>
         </nav>
+
         <a href="#consultation" className={styles.consultationBtn} onClick={handleLinkClick}>
           {t("get_consultation")}
         </a>
+
         <img className={styles.logo} src={logo} alt="Owl logo" />
       </div>
     </div>
