@@ -61,11 +61,40 @@
 
 /* ==== TABLET (768px+) ==== */
 @media screen and (min-width: 744px) {
+  .title {
+    font-size: 30px;
+  }
+  .list {
+    gap: 16px;
+  }
+  .item {
+    gap: 38px;
+    padding: 16px 16px 16px 23px;
+    border: none;
+    width: 100%;
+    height: auto;
+  }
+  .number {
+    font-size: 125px;
+  }
+  .text {
+    font-size: 28px;
+  }
 }
 
 /* ==== DESKTOP (1440px+) ==== */
 @media screen and (min-width: 1440px) {
+  .list {
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+  .item {
+    gap: 90px;
+  }
   .item:nth-child(even) {
-    padding-left: 100px;
+    padding-left: 200px;
+  }
+  .text {
+    font-size: 36px;
   }
 }
