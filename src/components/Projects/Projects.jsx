@@ -49,10 +49,12 @@ const Projects = () => {
               href={link}
               target="_blank"
               rel="noopener noreferrer"
+              // title={t("view_project")}
             >
               <span className={styles.arrowLink}>
                 <BsArrowUpRight className={styles.iconLink} />
               </span>
+              <span className={styles.tooltip}>{t("common:view_project")}</span>
             </a>
 
             {!imageLoaded && (

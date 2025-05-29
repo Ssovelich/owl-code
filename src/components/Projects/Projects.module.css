@@ -4,7 +4,7 @@
 }
 .projects_container {
   max-width: 100%;
-  overflow: hidden;
+  overflow: visible;
 }
 .title {
   margin-bottom: 34px;
@@ -29,7 +29,7 @@
   border-radius: 32px 32px 0 0;
   /* width: 357px; */
   height: 238px;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   display: flex;
   align-items: center;
@@ -45,9 +45,10 @@
   justify-content: center;
   width: 56px;
   height: 56px;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.4);
   transition: all 0.3s;
 }
+
 .arrowLink {
   display: flex;
   align-items: center;
@@ -66,6 +67,29 @@
 }
 .linkInfo:hover .arrowLink {
   transform: scale(1.15);
+}
+.tooltip {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  transform: translateY(8px);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, transform 0.3s;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.linkInfo:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(4px);
 }
 .image {
   width: 100%;
@@ -188,9 +212,18 @@
     height: 112px;
   }
   .arrowLink {
-     border: 4px solid var(--accent);
+    border: 4px solid var(--accent);
     width: 80px;
     height: 80px;
+  }
+  .tooltip {
+    transform: translateY(16px);
+    border-radius: 8px;
+    font-size: 18px;
+  }
+
+  .linkInfo:hover .tooltip {
+    transform: translateY(6px);
   }
 
   .iconLink {
@@ -223,12 +256,19 @@
     width: 90px;
     height: 90px;
   }
- .linkInfo {
+  .tooltip {
+    transform: translateY(22px);
+    font-size: 24px;
+  }
+
+  .linkInfo:hover .tooltip {
+    transform: translateY(8px);
+  }
+  .linkInfo {
     width: 122px;
     height: 122px;
   }
   .iconLink {
-   
   }
   .info {
     /* height: 500px; */
