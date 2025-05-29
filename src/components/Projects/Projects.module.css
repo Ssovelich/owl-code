@@ -7,7 +7,9 @@
   overflow: hidden;
 }
 .title {
-  margin-bottom: 24px;
+  margin-bottom: 34px;
+  font-weight: 500;
+  font-size: 20px;
   text-align: center;
 }
 .card {
@@ -15,20 +17,55 @@
   flex-direction: column;
   background: var(--background);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
+  border: 1px solid rgba(97, 99, 104, 0.2);
+  border-radius: 32px;
   overflow: hidden;
   width: 100%;
-  max-width: 100%;
+  /* max-width: 100%; */
   box-sizing: border-box;
 }
 
 .imageWrapper {
-  height: 280px;
+  border-radius: 32px 32px 0 0;
+  /* width: 357px; */
+  height: 238px;
   overflow: hidden;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.linkInfo {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s;
+}
+.arrowLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  transition: 0.3s ease-in-out;
+}
+.iconLink {
+  font-size: 24px;
+  color: var(--accent);
+  transition: color 0.3s ease-in-out;
+}
+.linkInfo:hover .arrowLink {
+  transform: scale(1.15);
 }
 .image {
   width: 100%;
@@ -57,64 +94,36 @@
   z-index: 1;
 }
 .info {
-  height: 280px;
-  padding: 20px;
   display: flex;
   flex-direction: column;
+  min-height: 238px;
+  padding: 8px;
 }
 .titleInfo {
   margin: 0 0 10px;
+  font-weight: 400;
+  font-size: 20px;
   text-align: center;
 }
 .textInfo {
-  /* margin-bottom: 10px; */
-}
-.linkInfo {
-  margin-top: auto;
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: bold;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  transition: color 0.3s;
-}
-.icon {
-  border-radius: 50%;
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: all 0.3s;
-  height: 24px;
-  width: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4px;
-}
-.linkInfo:hover .icon {
-  opacity: 1;
-  transform: translateX(0);
-  border: 1px solid var(--accent);
-}
-
-.linkInfo:hover {
-  text-decoration: underline;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 160%;
 }
 
 .controls {
   margin-top: 20px;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 80px;
 }
 
 .arrow {
   background: none;
-  border: 2px solid var(--accent);
+  border: 4px solid var(--accent);
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   font-size: 18px;
   cursor: pointer;
   transition: all 0.3s;
@@ -124,7 +133,7 @@
 }
 .arrowIcon {
   transform: rotate(45deg);
-  font-size: 18px;
+  font-size: 32px;
   transition: transform 0.3s;
 }
 .arrowLeft .arrowIcon {
@@ -138,24 +147,105 @@
   scale: 0.9;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  background-color: var(--accent-light, #ccc);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background-color 1s;
+}
+
+.activeDot {
+  background-color: var(--accent);
+}
+
 /* ==== TABLET (768px+) ==== */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 744px) {
+  .title {
+    font-size: 30px;
+    margin-bottom: 40px;
+  }
   .imageWrapper {
-    height: 300px;
+    height: 457px;
+  }
+  .info {
+    padding: 33px;
+  }
+  .linkInfo {
+    top: 32px;
+    right: 32px;
+    border-radius: 32px;
+    width: 112px;
+    height: 112px;
+  }
+  .arrowLink {
+     border: 4px solid var(--accent);
+    width: 80px;
+    height: 80px;
+  }
+
+  .iconLink {
+    /* width: 36px;
+    height: 36px; */
+    font-size: 58px;
+  }
+  .titleInfo {
+    margin: 0 0 16px;
+    font-size: 30px;
+  }
+  .textInfo {
+    font-size: 24px;
   }
 }
 
 /* ==== DESKTOP (1440px+) ==== */
 @media screen and (min-width: 1440px) {
+  .title {
+    font-size: 40px;
+    margin-bottom: 60px;
+  }
   .card {
-    flex-direction: row;
+    /* flex-direction: row; */
   }
   .imageWrapper {
-    height: 500px;
-    width: 50%;
+    height: 798px;
+  }
+  .arrowLink {
+    width: 90px;
+    height: 90px;
+  }
+ .linkInfo {
+    width: 122px;
+    height: 122px;
+  }
+  .iconLink {
+   
   }
   .info {
-    height: 500px;
-    width: 50%;
+    /* height: 500px; */
+  }
+  .titleInfo {
+    margin: 0 0 32px;
+    font-size: 36px;
+  }
+  .controls {
+    gap: 120px;
+  }
+
+  .arrow {
+    width: 90px;
+    height: 90px;
+  }
+  .arrowIcon {
+    font-size: 36px;
   }
 }

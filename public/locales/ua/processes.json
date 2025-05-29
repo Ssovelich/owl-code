@@ -1,0 +1,10 @@
+{
+  "steps": [
+    { "id": "pen", "label": "Заявка" },
+    { "id": "note", "label": "Бриф" },
+    { "id": "brush", "label": "Дизайн" },
+    { "id": "dev", "label": "Розробка" },
+    { "id": "gears", "label": "Тестування" },
+    { "id": "rocket", "label": "Запуск" }
+  ]
+}

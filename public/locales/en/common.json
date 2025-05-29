@@ -10,11 +10,13 @@
 
   "services_title": "Comprehensive services for online presence",
 
+  "processes_title": "Stages of work",
+
   "about_title": "About us",
 
   "advantages_title": "Why us?",
 
-   "projects_title": "Our Projects",
+  "projects_title": "Our Projects",
   "view_project": "View Project",
 
   "consultation_title": "Get a free consultation",
@@ -34,8 +36,6 @@
     "email_required": "Email is required",
     "phone_invalid": "Invalid phone number"
   },
-
-
 
   "footer_text": "We create websites that bring results"
 }

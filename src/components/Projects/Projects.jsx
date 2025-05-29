@@ -1,14 +1,16 @@
 import { useState } from "react";
 import styles from "./Projects.module.css";
 import projects from "./projectsData.json";
-import { BsArrowUpRight } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import Loader from "../Loader/Loader";
+import { BsArrowUpRight } from "react-icons/bs";
+import { useMediaQuery } from "../../utils/useMediaQuery"; // шляху адаптуй
 
 const Projects = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const { t } = useTranslation( "projects");
+  const { t } = useTranslation("projects");
+  const isMobile = useMediaQuery("(max-width: 743px)");
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
@@ -42,44 +44,63 @@ const Projects = () => {
 
         <div className={styles.card}>
           <div className={styles.imageWrapper}>
-  {!imageLoaded && (
-    <div className={styles.imageLoader}>
-      <Loader />
-    </div>
-  )}
-  <img
-    src={image}
-    alt={translatedProject.title}
-    className={`${styles.image} ${imageLoaded ? styles.loaded : ""}`}
-    onLoad={() => setImageLoaded(true)}
-  />
-</div>
-          <div className={styles.info}>
-            <h3 className={styles.titleInfo}>{translatedProject.title}</h3>
-            <p className={styles.textInfo}>{translatedProject.description}</p>
             <a
               className={styles.linkInfo}
               href={link}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {t("common:view_project")}
-              <BsArrowUpRight className={styles.icon} />
+              <span className={styles.arrowLink}>
+                <BsArrowUpRight className={styles.iconLink} />
+              </span>
             </a>
+
+            {!imageLoaded && (
+              <div className={styles.imageLoader}>
+                <Loader />
+              </div>
+            )}
+            <img
+              src={image}
+              alt={translatedProject.title}
+              className={`${styles.image} ${imageLoaded ? styles.loaded : ""}`}
+              onLoad={() => setImageLoaded(true)}
+            />
+          </div>
+          <div className={styles.info}>
+            <h3 className={styles.titleInfo}>{translatedProject.title}</h3>
+            <p className={styles.textInfo}>{translatedProject.description}</p>
           </div>
         </div>
 
-        <div className={styles.controls}>
-          <button
-            onClick={handlePrev}
-            className={`${styles.arrow} ${styles.arrowLeft}`}
-          >
-            <BsArrowUpRight className={styles.arrowIcon} />
-          </button>
-          <button onClick={handleNext} className={styles.arrow}>
-            <BsArrowUpRight className={styles.arrowIcon} />
-          </button>
-        </div>
+        {isMobile ? (
+          <div className={styles.pagination}>
+            {projects.map((_, index) => (
+              <button
+                key={index}
+                className={`${styles.dot} ${
+                  index === currentIndex ? styles.activeDot : ""
+                }`}
+                onClick={() => {
+                  setCurrentIndex(index);
+                  setImageLoaded(false);
+                }}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className={styles.controls}>
+            <button
+              onClick={handlePrev}
+              className={`${styles.arrow} ${styles.arrowLeft}`}
+            >
+              <BsArrowUpRight className={styles.arrowIcon} />
+            </button>
+            <button onClick={handleNext} className={styles.arrow}>
+              <BsArrowUpRight className={styles.arrowIcon} />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,10 @@
+{
+  "steps": [
+    { "id": "pen", "label": "Application" },
+    { "id": "note", "label": "Brief" },
+    { "id": "brush", "label": "Design" },
+    { "id": "dev", "label": "Development" },
+    { "id": "gears", "label": "Testing" },
+    { "id": "rocket", "label": "Launching" }
+  ]
+}

@@ -53,12 +53,20 @@
     {
       "title": "Web applications",
       "text": "Development of web applications of any complexity - from personal accounts to CRM systems.",
-      "description": [
-        "?????????????",
-        "?????????????",
-        "??????????????????",
-        "?????????????"
-      ]
+      "description": {
+        "paragraphs": [
+          "A web application is an effective tool for automating processes, improving service, and developing digital products.",
+          "We create functional and scalable web applications for specific tasks of your business. These can be content management systems, personal accounts, online services, CRM/ERP solutions, internal corporate platforms, and more."
+        ],
+        "listTitle": "We provide:",
+        "list": [
+          "individual approach to architecture and design;",
+          "convenient and intuitive interface for users;",
+          "adaptability to all devices;",
+          "secure authorization and data management;",
+          "integration with APIs, payment systems, databases."
+        ]
+      }
     }
   ]
 }

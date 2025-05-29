@@ -9,17 +9,43 @@
   gap: 30px;
 }
 .title {
-  font-size: 24px;
-  font-weight: bold;
+  font-weight: 600;
+font-size: 20px;
   text-align: center;
 }
 .wrapperText{
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
 }
 .text{
     font-weight: 400;
-font-size: 32px;
+font-size: 18px;
 line-height: 160%;
+}
+
+/* ==== TABLET (768px+) ==== */
+@media screen and (min-width: 744px) {
+  .title {
+font-size: 30px;
+}
+.wrapperText{
+    gap: 20px;
+}
+.text{
+font-size: 28px;
+}
+}
+
+/* ==== DESKTOP (1440px+) ==== */
+@media screen and (min-width: 1440px) {
+    .title {
+font-size: 40px;
+}
+.wrapperText{
+    gap: 28px;
+}
+.text{
+font-size: 32px;
+}
 }
