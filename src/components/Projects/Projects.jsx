@@ -11,7 +11,7 @@ const ANIMATION_DURATION = 600;
 const Projects = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [cardAnimation, setCardAnimation] = useState(""); // no animation on first render
+  const [cardAnimation, setCardAnimation] = useState("");
   const [isAnimating, setIsAnimating] = useState(false);
   const [direction, setDirection] = useState("right");
   const { t } = useTranslation("projects");
@@ -31,9 +31,9 @@ const Projects = () => {
   }, ANIMATION_DURATION);
 
   setTimeout(() => {
-    setCardAnimation(""); // Скидаємо після завершення
+    setCardAnimation("");
     setIsAnimating(false);
-  }, ANIMATION_DURATION * 2); // або трохи менше
+  }, ANIMATION_DURATION * 2);
 };
 
 
