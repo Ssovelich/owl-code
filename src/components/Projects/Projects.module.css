@@ -1,9 +1,8 @@
 .projects {
-  padding: 40px 20px;
-  margin: 0 auto;
+  padding: 40px 0;
+  width: 100vw;
 }
 .projects_container {
-  max-width: 100%;
   overflow: visible;
 }
 .title {
@@ -15,14 +14,73 @@
 .card {
   display: flex;
   flex-direction: column;
-  background: var(--background);
+  background: var(--white, #fff);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(97, 99, 104, 0.2);
   border-radius: 32px;
   overflow: hidden;
   width: 100%;
-  /* max-width: 100%; */
   box-sizing: border-box;
+}
+.cardEnterRight {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.6s ease-in-out;
+}
+.cardEnterRightActive {
+  opacity: 1;
+  transform: translateX(0);
+}
+.cardEnterLeft {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.6s ease-in-out;
+}
+.cardEnterLeftActive {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.cardExitActive {
+  opacity: 0;
+  transition: all 0.6s ease-in-out;
+  transform: translateX(var(--exit-direction, 50px));
+}
+.cardExitLeft {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.6s ease-in-out;
+}
+
+.cardExitRight {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.6s ease-in-out;
+}
+.cardEnterFromLeft {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: enterFromLeft 0.6s ease-in-out forwards;
+}
+
+.cardEnterFromRight {
+  opacity: 0;
+  transform: translateX(50px);
+  animation: enterFromRight 0.6s ease-in-out forwards;
+}
+
+@keyframes enterFromLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes enterFromRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .imageWrapper {
@@ -45,7 +103,7 @@
   justify-content: center;
   width: 56px;
   height: 56px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.8);
   transition: all 0.3s;
 }
 
@@ -121,7 +179,7 @@
   display: flex;
   flex-direction: column;
   min-height: 238px;
-  padding: 8px;
+  padding: 16px;
 }
 .titleInfo {
   margin: 0 0 10px;
@@ -185,7 +243,7 @@
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  transition: background-color 1s;
+  transition: background-color 0.5s;
 }
 
 .activeDot {

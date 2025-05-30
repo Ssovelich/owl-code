@@ -1,25 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Projects.module.css";
 import projects from "./projectsData.json";
 import { useTranslation } from "react-i18next";
 import Loader from "../Loader/Loader";
 import { BsArrowUpRight } from "react-icons/bs";
-import { useMediaQuery } from "../../utils/useMediaQuery"; // шляху адаптуй
+import { useMediaQuery } from "../../utils/useMediaQuery";
+
+const ANIMATION_DURATION = 600;
 
 const Projects = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [cardAnimation, setCardAnimation] = useState(""); // no animation on first render
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [direction, setDirection] = useState("right");
   const { t } = useTranslation("projects");
   const isMobile = useMediaQuery("(max-width: 743px)");
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+  const handleChangeProject = (newIndex, dir) => {
+  if (isAnimating || newIndex === currentIndex) return;
+
+  setIsAnimating(true);
+  setDirection(dir);
+  setCardAnimation(dir === "right" ? styles.cardExitLeft : styles.cardExitRight);
+
+  setTimeout(() => {
+    setCurrentIndex(newIndex);
     setImageLoaded(false);
+    setCardAnimation(dir === "right" ? styles.cardEnterFromRight : styles.cardEnterFromLeft);
+  }, ANIMATION_DURATION);
+
+  setTimeout(() => {
+    setCardAnimation(""); // Скидаємо після завершення
+    setIsAnimating(false);
+  }, ANIMATION_DURATION * 2); // або трохи менше
+};
+
+
+
+  const handlePrev = () => {
+    const newIndex = currentIndex === 0 ? projects.length - 1 : currentIndex - 1;
+    handleChangeProject(newIndex, "left");
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === projects.length - 1 ? 0 : prev + 1));
-    setImageLoaded(false);
+    const newIndex = currentIndex === projects.length - 1 ? 0 : currentIndex + 1;
+    handleChangeProject(newIndex, "right");
   };
 
   const { image, link } = projects[currentIndex];
@@ -29,27 +55,25 @@ const Projects = () => {
     returnObjects: true,
   });
 
-  if (!translatedProject) {
-    return (
-      <div className={styles.loaderWrapper}>
-        <Loader />
-      </div>
-    );
-  }
+  useEffect(() => {
+    setImageLoaded(false);
+    const img = new Image();
+    img.src = image;
+    img.onload = () => setImageLoaded(true);
+  }, [image]);
 
   return (
     <div className={styles.projects}>
       <div id="projects" className={`container ${styles.projects_container}`}>
         <h2 className={styles.title}>{t("common:projects_title")}</h2>
 
-        <div className={styles.card}>
+        <div className={`${styles.card} ${cardAnimation}`}>
           <div className={styles.imageWrapper}>
             <a
               className={styles.linkInfo}
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              // title={t("view_project")}
             >
               <span className={styles.arrowLink}>
                 <BsArrowUpRight className={styles.iconLink} />
@@ -57,17 +81,19 @@ const Projects = () => {
               <span className={styles.tooltip}>{t("common:view_project")}</span>
             </a>
 
-            {!imageLoaded && (
+            {!imageLoaded ? (
               <div className={styles.imageLoader}>
                 <Loader />
               </div>
+            ) : (
+              <img
+                src={image}
+                alt={translatedProject.title}
+                className={`${styles.image} ${
+                  imageLoaded ? styles.loaded : ""
+                }`}
+              />
             )}
-            <img
-              src={image}
-              alt={translatedProject.title}
-              className={`${styles.image} ${imageLoaded ? styles.loaded : ""}`}
-              onLoad={() => setImageLoaded(true)}
-            />
           </div>
           <div className={styles.info}>
             <h3 className={styles.titleInfo}>{translatedProject.title}</h3>
@@ -83,10 +109,9 @@ const Projects = () => {
                 className={`${styles.dot} ${
                   index === currentIndex ? styles.activeDot : ""
                 }`}
-                onClick={() => {
-                  setCurrentIndex(index);
-                  setImageLoaded(false);
-                }}
+                onClick={() =>
+                  handleChangeProject(index, index > currentIndex ? "right" : "left")
+                }
               />
             ))}
           </div>
