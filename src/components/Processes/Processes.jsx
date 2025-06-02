@@ -1,5 +1,4 @@
 import styles from "./Processes.module.css";
-import { FaArrowRightLong } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
 
 const Processes = () => {
@@ -12,30 +11,12 @@ const Processes = () => {
         <h2 className={styles.title}>{t("common:processes_title")}</h2>
 
         <ul className={styles.wrapIcons}>
-          {steps.map((step, index) => (
-            <li key={step.id} className={styles.itemGroup}>
-              <div className={styles.item}>
-                <svg
-                  className={styles.icon}
-                  // width={96}
-                  // height={96}
-                  aria-hidden="true"
-                >
-                  <use href={`/sprite.svg#icon-${step.id}`} />
-                </svg>
-                <span className={styles.text}>{step.label}</span>
-              </div>
-
-              {/* стрілка, якщо не останній елемент */}
-              {index < steps.length - 1 && (
-                <div
-                  className={`${styles.arrowWrap} ${
-                    index === 2 ? styles.hideOnTablet : ""
-                  }`}
-                >
-                  <FaArrowRightLong className={styles.arrow} />
-                </div>
-              )}
+          {steps.map((step) => (
+            <li key={step.id} className={styles.item}>
+              <svg className={styles.icon} aria-hidden="true">
+                <use href={`/sprite.svg#icon-${step.id}`} />
+              </svg>
+              <span className={styles.text}>{step.label}</span>
             </li>
           ))}
         </ul>
