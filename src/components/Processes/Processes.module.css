@@ -3,8 +3,6 @@
   padding: 30px 0;
 }
 
-.processes_container {}
-
 .title {
   text-align: center;
   margin-bottom: 48px;
@@ -13,34 +11,48 @@
 .wrapIcons {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
   gap: 24px;
-  justify-items: center;
-  margin-bottom: 16px;
+  position: relative;
 }
 
-/* ICON ITEM */
+.itemGroup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  text-align: center;
 }
 
-/* ICON */
 .icon {
   width: 48px;
   height: 48px;
-  transition: width 0.3s, height 0.3s;
+  transition: width 0.3s ease, height 0.3s ease;
 }
 
-/* TEXT */
 .text {
-  font-weight: 400;
   font-size: 20px;
+  text-align: center;
 }
 
-/* SEPARATOR */
+.arrowWrap {
+  position: absolute;
+  top: 24px;
+  right: -24px;
+}
+
+.arrow {
+  font-size: 24px;
+  color: var(--black);
+  transition: transform 0.3s ease;
+}
+
 .separator {
   width: 100%;
   height: 2px;
@@ -48,10 +60,16 @@
   border: none;
 }
 
-/* ==== TABLET ==== */
+/* Сховати десктопну стрілку на моб/таблет */
+.desktopOnly {
+  display: none;
+}
+
+/* === TABLET === */
 @media screen and (min-width: 744px) {
   .wrapIcons {
-    gap: 32px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 64px;
   }
 
   .icon {
@@ -62,16 +80,40 @@
   .text {
     font-size: 24px;
   }
+
+  .arrowWrap {
+    right: -36px;
+  }
+
+  .arrow {
+    font-size: 32px;
+  }
 }
 
-/* ==== DESKTOP ==== */
+/* === DESKTOP === */
 @media screen and (min-width: 1440px) {
   .wrapIcons {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 48px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 0;
+  }
+
+  .itemGroup {
+    flex: 1 1 0;
   }
 
   .text {
     font-size: 28px;
   }
+
+  .arrowWrap {
+    right: -36px;
+    top: 32px;
+  }
+
+  .desktopOnly {
+    display: block;
+  }
 }
+
