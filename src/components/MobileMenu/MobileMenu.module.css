@@ -85,8 +85,7 @@
   border: 2px solid var(--white);
 }
 .consultationBtn:active {
-  border: 2px solid var(--accent-activ);
-  background-color: var(--accent-activ);
+ scale: 0.95;
 }
 .logo {
   width: 100%;

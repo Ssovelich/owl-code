@@ -57,6 +57,9 @@
   border: 2px solid var(--white);
   color: var(--white);
 }
+.header .consultationBtn:active {
+  scale: 0.95;
+}
 .header .consultationBtn.showBtn {
   opacity: 1;
   transform: translateY(0);
@@ -146,6 +149,9 @@
 }
 .burger:hover span {
   background-color: var(--white);
+}
+.burger:active  {
+  scale: 0.95;
 }
 
 .headerLangPosition {
