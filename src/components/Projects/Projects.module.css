@@ -4,6 +4,7 @@
 }
 .projects_container {
   overflow: visible;
+  position: relative;
 }
 .title {
   margin-bottom: 34px;
@@ -178,7 +179,7 @@
 .info {
   display: flex;
   flex-direction: column;
-  min-height: 238px;
+  height: 238px;
   padding: 16px;
 }
 .titleInfo {
@@ -250,6 +251,51 @@
   background-color: var(--accent);
 }
 
+.swipeHint {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--black);
+  color: var(--white);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 160%;
+  text-align: center;
+  width: 80%;
+  z-index: 10;
+  opacity: 0;
+  animation: fadeInOut 4s ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+/* .swipeText {
+  font-weight: 500;
+} */
+
+
+
 /* ==== TABLET (768px+) ==== */
 @media screen and (min-width: 744px) {
   .title {
@@ -261,6 +307,7 @@
   }
   .info {
     padding: 33px;
+  height: 310px;
   }
   .linkInfo {
     top: 32px;
