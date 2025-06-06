@@ -9,6 +9,7 @@ import { useMediaQuery } from "../../utils/useMediaQuery";
 const ANIMATION_DURATION = 600;
 
 const Projects = () => {
+  const sectionRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [cardAnimation, setCardAnimation] = useState("");
@@ -23,32 +24,41 @@ const Projects = () => {
   const touchEndX = useRef(null);
 
   // === Memoized handlers ===
-  const handleChangeProject = useCallback((newIndex, dir) => {
-    if (isAnimating || newIndex === currentIndex) return;
+  const handleChangeProject = useCallback(
+    (newIndex, dir) => {
+      if (isAnimating || newIndex === currentIndex) return;
 
-    setIsAnimating(true);
-    setDirection(dir);
-    setCardAnimation(dir === "right" ? styles.cardExitLeft : styles.cardExitRight);
+      setIsAnimating(true);
+      setDirection(dir);
+      setCardAnimation(
+        dir === "right" ? styles.cardExitLeft : styles.cardExitRight
+      );
 
-    setTimeout(() => {
-      setCurrentIndex(newIndex);
-      setImageLoaded(false);
-      setCardAnimation(dir === "right" ? styles.cardEnterFromRight : styles.cardEnterFromLeft);
-    }, ANIMATION_DURATION);
+      setTimeout(() => {
+        setCurrentIndex(newIndex);
+        setImageLoaded(false);
+        setCardAnimation(
+          dir === "right" ? styles.cardEnterFromRight : styles.cardEnterFromLeft
+        );
+      }, ANIMATION_DURATION);
 
-    setTimeout(() => {
-      setCardAnimation("");
-      setIsAnimating(false);
-    }, ANIMATION_DURATION * 2);
-  }, [isAnimating, currentIndex]);
+      setTimeout(() => {
+        setCardAnimation("");
+        setIsAnimating(false);
+      }, ANIMATION_DURATION * 2);
+    },
+    [isAnimating, currentIndex]
+  );
 
   const handlePrev = useCallback(() => {
-    const newIndex = currentIndex === 0 ? projects.length - 1 : currentIndex - 1;
+    const newIndex =
+      currentIndex === 0 ? projects.length - 1 : currentIndex - 1;
     handleChangeProject(newIndex, "left");
   }, [currentIndex, handleChangeProject]);
 
   const handleNext = useCallback(() => {
-    const newIndex = currentIndex === projects.length - 1 ? 0 : currentIndex + 1;
+    const newIndex =
+      currentIndex === projects.length - 1 ? 0 : currentIndex + 1;
     handleChangeProject(newIndex, "right");
   }, [currentIndex, handleChangeProject]);
 
@@ -99,19 +109,33 @@ const Projects = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handlePrev, handleNext]);
 
-  // show swipe hint for 4s only on mobile/tablet
+  // show swipe hint only when section is in viewport (mobile/tablet)
   useEffect(() => {
-    if (isMobileOrTablet) {
-      setShowSwipeHint(true);
-      const timeout = setTimeout(() => setShowSwipeHint(false), 4000);
-      return () => clearTimeout(timeout);
-    }
+    if (!isMobileOrTablet || !sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowSwipeHint(true); // показати підказку
+
+          observer.disconnect(); // лише один раз
+        }
+      },
+      {
+        threshold: 0.3, // коли хоча б 30% секції видно
+      }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
   }, [isMobileOrTablet]);
 
   return (
     <div className={styles.projects}>
       <div
         id="projects"
+        ref={sectionRef}
         className={`container ${styles.projects_container}`}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -119,16 +143,16 @@ const Projects = () => {
       >
         <h2 className={styles.title}>{t("common:projects_title")}</h2>
 
-       {showSwipeHint && (
-  <div className={styles.swipeHint}>
-    <span
-      className={styles.swipeFinger}
-      onAnimationEnd={() => setShowSwipeHint(false)}
-    >
-      👆
-    </span>
-  </div>
-)}
+        {showSwipeHint && (
+          <div className={styles.swipeHint}>
+            <span
+              className={styles.swipeFinger}
+              onAnimationEnd={() => setShowSwipeHint(false)}
+            >
+              👆
+            </span>
+          </div>
+        )}
 
         <div className={`${styles.card} ${cardAnimation}`}>
           <div className={styles.imageWrapper}>
@@ -152,7 +176,9 @@ const Projects = () => {
               <img
                 src={image}
                 alt={translatedProject.title}
-                className={`${styles.image} ${imageLoaded ? styles.loaded : ""}`}
+                className={`${styles.image} ${
+                  imageLoaded ? styles.loaded : ""
+                }`}
               />
             )}
           </div>
@@ -168,16 +194,24 @@ const Projects = () => {
             {projects.map((_, index) => (
               <button
                 key={index}
-                className={`${styles.dot} ${index === currentIndex ? styles.activeDot : ""}`}
+                className={`${styles.dot} ${
+                  index === currentIndex ? styles.activeDot : ""
+                }`}
                 onClick={() =>
-                  handleChangeProject(index, index > currentIndex ? "right" : "left")
+                  handleChangeProject(
+                    index,
+                    index > currentIndex ? "right" : "left"
+                  )
                 }
               />
             ))}
           </div>
         ) : (
           <div className={styles.controls}>
-            <button onClick={handlePrev} className={`${styles.arrow} ${styles.arrowLeft}`}>
+            <button
+              onClick={handlePrev}
+              className={`${styles.arrow} ${styles.arrowLeft}`}
+            >
               <BsArrowUpRight className={styles.arrowIcon} />
             </button>
             <button onClick={handleNext} className={styles.arrow}>
