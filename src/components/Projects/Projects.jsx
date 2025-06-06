@@ -120,10 +120,10 @@ const Projects = () => {
         <h2 className={styles.title}>{t("common:projects_title")}</h2>
 
         {showSwipeHint && (
-          <div className={styles.swipeHint}>
-            <span className={styles.swipeText}>{t("common:swipe_hint")}</span>
-          </div>
-        )}
+  <div className={styles.swipeHint}>
+    <span className={styles.swipeFinger}>👆</span>
+  </div>
+)}
 
         <div className={`${styles.card} ${cardAnimation}`}>
           <div className={styles.imageWrapper}>
