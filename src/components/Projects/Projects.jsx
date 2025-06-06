@@ -119,9 +119,14 @@ const Projects = () => {
       >
         <h2 className={styles.title}>{t("common:projects_title")}</h2>
 
-        {showSwipeHint && (
+       {showSwipeHint && (
   <div className={styles.swipeHint}>
-    <span className={styles.swipeFinger}>👆</span>
+    <span
+      className={styles.swipeFinger}
+      onAnimationEnd={() => setShowSwipeHint(false)}
+    >
+      👆
+    </span>
   </div>
 )}
 
