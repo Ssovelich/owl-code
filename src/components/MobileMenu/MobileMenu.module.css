@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 16px;
+  /* padding-top: 16px; */
   animation: backdropFadeIn 0.5s ease forwards;
 }
 .menu {
@@ -15,7 +15,7 @@
   width: 100%;
   max-width: 378px;
   min-height: 680px;
-  padding: 40px 20px 20px;
+  padding: 20px;
   border: 1px solid var(--accent);
   display: flex;
   flex-direction: column;
@@ -137,13 +137,13 @@
 
 /* ==== TABLET (768px+) ==== */
 @media screen and (min-width: 744px) {
-  .backdrop {
+  /* .backdrop {
   padding-top: 0;
-}
+} */
   .menu {
     max-width: 744px;
     min-height: 820px;
-    padding: 33px 35px;
+    padding: 12px 35px;
   }
   .nav a {
     font-size: 32px;
