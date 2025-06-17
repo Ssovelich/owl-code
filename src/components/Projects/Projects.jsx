@@ -222,13 +222,13 @@ const Projects = () => {
           </div>
         ) : (
           <div className={styles.controls}>
-            <button
+            <button aria-label="Prev project"
               onClick={handlePrev}
               className={`${styles.arrow} ${styles.arrowLeft}`}
             >
               <BsArrowUpRight className={styles.arrowIcon} />
             </button>
-            <button onClick={handleNext} className={styles.arrow}>
+            <button aria-label="Next project" onClick={handleNext} className={styles.arrow}>
               <BsArrowUpRight className={styles.arrowIcon} />
             </button>
           </div>
