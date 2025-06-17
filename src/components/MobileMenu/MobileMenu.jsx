@@ -126,7 +126,7 @@ const MobileMenu = ({ onClose, isOpen }) => {
           {t("get_consultation")}
         </a>
 
-        <img className={styles.logo} src={logo} alt="Owl logo" />
+        {/* <img className={styles.logo} src={logo} alt="Owl logo" /> */}
       </div>
     </div>
   );

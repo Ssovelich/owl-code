@@ -11,6 +11,7 @@
   animation: backdropFadeIn 0.5s ease forwards;
 }
 .menu {
+  position: relative;
   background-color: var(--black);
   width: 100%;
   max-width: 378px;
@@ -24,21 +25,39 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
   opacity: 0;
   will-change: transform, opacity;
+  z-index: 1;
 }
 .menu.closing {
   animation: menuExit 0.45s ease forwards;
+}
+.menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../../../public/owlGrey.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.08; /* налаштування блідісті фону */
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.menu > * {
+  position: relative;
+  z-index: 2;
 }
 .btnLang {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
 }
 .nav {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 28px;
+  margin-bottom: 100px;
 }
 .nav a {
   position: relative;

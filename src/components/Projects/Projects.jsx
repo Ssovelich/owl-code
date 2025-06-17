@@ -18,7 +18,7 @@ const Projects = () => {
   const [showSwipeHint, setShowSwipeHint] = useState(false);
 
   const { t } = useTranslation("projects");
-  const isMobileOrTablet = useMediaQuery("(max-width: 1023px)");
+  const isMobileOrTablet = useMediaQuery("(max-width: 1439px)");
 
   const touchStartX = useRef(null);
   const touchEndX = useRef(null);
