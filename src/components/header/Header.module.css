@@ -1,6 +1,6 @@
 .header {
   width: 100vw;
-  height: 136px;
+  height: 64px;
   position: fixed;
   top: 0;
   left: 0;
@@ -118,7 +118,7 @@
   background: none;
   border: none;
   padding: 0;
-  z-index: 1001; /* вище MobileMenu */
+  z-index: 999; /* вище MobileMenu */
 }
 
 .burger span {
@@ -171,7 +171,7 @@
 /* ==== TABLET (768px+) ==== */
 @media screen and (min-width: 744px) {
   .header {
-    height: 136px;
+    height: 92px;
   }
   .header_container {
     /* justify-content: space-between; */
@@ -227,7 +227,7 @@
     border-radius: 3px;
   }
   .burger.open span:nth-child(1) {
-    transform: rotate(45deg) translate(9px, 9px);
+    transform: rotate(45deg) translate(10px, 10px);
   }
   .burger.open span:nth-child(3) {
     transform: rotate(-45deg) translate(9px, -9px);
@@ -243,7 +243,7 @@
 /* ==== DESKTOP (1440px+) ==== */
 @media screen and (min-width: 1440px) {
   .header {
-    height: 150px;
+    height: 120px;
   }
   .header_container {
     max-width: 1440px;

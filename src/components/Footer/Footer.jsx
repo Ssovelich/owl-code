@@ -10,7 +10,7 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      <div className={`container ${styles.footer_container}`}>
+      <div id="contacts" className={`container ${styles.footer_container}`}>
         <div className={styles.footerWrap}>
           <div className={styles.footerTop}>
             <a href="/" className={styles.logoWrapper}>
