@@ -10,6 +10,7 @@ const ANIMATION_DURATION = 600;
 
 const Projects = () => {
   const sectionRef = useRef(null);
+  const animationTimeoutRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [cardAnimation, setCardAnimation] = useState("");
@@ -18,7 +19,7 @@ const Projects = () => {
   const [showSwipeHint, setShowSwipeHint] = useState(false);
 
   const { t } = useTranslation("projects");
-  const isMobileOrTablet = useMediaQuery("(max-width: 1439px)");
+  const isMobile = useMediaQuery("(max-width: 743px)");
 
   const touchStartX = useRef(null);
   const touchEndX = useRef(null);
@@ -34,18 +35,18 @@ const Projects = () => {
         dir === "right" ? styles.cardExitLeft : styles.cardExitRight
       );
 
-      setTimeout(() => {
+      animationTimeoutRef.current = setTimeout(() => {
         setCurrentIndex(newIndex);
         setImageLoaded(false);
         setCardAnimation(
           dir === "right" ? styles.cardEnterFromRight : styles.cardEnterFromLeft
         );
-      }, ANIMATION_DURATION);
 
-      setTimeout(() => {
-        setCardAnimation("");
-        setIsAnimating(false);
-      }, ANIMATION_DURATION * 2);
+        animationTimeoutRef.current = setTimeout(() => {
+          setCardAnimation("");
+          setIsAnimating(false);
+        }, ANIMATION_DURATION);
+      }, ANIMATION_DURATION);
     },
     [isAnimating, currentIndex]
   );
@@ -76,7 +77,7 @@ const Projects = () => {
     const distance = touchStartX.current - touchEndX.current;
 
     if (Math.abs(distance) > 50) {
-      setShowSwipeHint(false); // hide hint after swipe
+      setShowSwipeHint(false);
       distance > 0 ? handleNext() : handlePrev();
     }
 
@@ -109,9 +110,9 @@ const Projects = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handlePrev, handleNext]);
 
-  // show swipe hint only when section is in viewport (mobile/tablet)
+  // show swipe hint only when section is in viewport (mobile)
   useEffect(() => {
-    if (!isMobileOrTablet || !sectionRef.current) return;
+    if (!isMobile || !sectionRef.current) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -129,7 +130,18 @@ const Projects = () => {
     observer.observe(sectionRef.current);
 
     return () => observer.disconnect();
-  }, [isMobileOrTablet]);
+  }, [isMobile]);
+
+  useEffect(() => {
+    return () => {
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const isValidLink = (url) =>
+    url && /^https?:\/\/[^\s$.?#].[^\s]*$/gm.test(url);
 
   return (
     <div className={styles.projects}>
@@ -156,6 +168,7 @@ const Projects = () => {
 
         <div className={`${styles.card} ${cardAnimation}`}>
           <div className={styles.imageWrapper}>
+            {isValidLink(link) && (
             <a
               className={styles.linkInfo}
               href={link}
@@ -167,6 +180,7 @@ const Projects = () => {
               </span>
               <span className={styles.tooltip}>{t("common:view_project")}</span>
             </a>
+             )}
 
             {!imageLoaded ? (
               <div className={styles.imageLoader}>
@@ -189,7 +203,7 @@ const Projects = () => {
           </div>
         </div>
 
-        {isMobileOrTablet ? (
+        {isMobile ? (
           <div className={styles.pagination}>
             {projects.map((_, index) => (
               <button
