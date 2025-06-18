@@ -23,37 +23,20 @@ const MobileMenu = ({ onClose, isOpen }) => {
   }, [isOpen]);
 
   useEffect(() => {
-  if (isOpen) {
-    const scrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.overflow = 'hidden';
-    document.body.dataset.scrollY = scrollY;
-  } else {
-    const scrollY = document.body.dataset.scrollY;
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.overflow = '';
-    window.scrollTo(0, parseInt(scrollY || '0'));
-    delete document.body.dataset.scrollY;
-  }
+    if (isOpen) {
+      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = `${scrollBarWidth}px`;
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    }
 
-  return () => {
-    const scrollY = document.body.dataset.scrollY;
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.overflow = '';
-    window.scrollTo(0, parseInt(scrollY || '0'));
-    delete document.body.dataset.scrollY;
-  };
-}, [isOpen]);
-
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (isClosing) {
