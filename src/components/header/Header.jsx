@@ -13,14 +13,8 @@ const Header = ({ scrolled }) => {
   const burgerButtonRef = useRef(null);
 
   useEffect(() => {
-    const sectionIds = [
-      "services",
-      "about",
-      "projects",
-      "advantages",
-      "contacts",
-    ];
-    const offset = 136; // висота хедера
+    const sectionIds = ["services", "about", "projects", "advantages", "contacts"];
+    const offset = 136;
 
     const handleScroll = () => {
       let currentSectionId = "";
@@ -29,7 +23,6 @@ const Header = ({ scrolled }) => {
         const section = document.getElementById(id);
         if (section) {
           const rect = section.getBoundingClientRect();
-
           if (rect.top <= offset && rect.bottom > offset) {
             currentSectionId = id;
             break;
@@ -40,14 +33,27 @@ const Header = ({ scrolled }) => {
       setActiveId(currentSectionId);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const throttledScroll = () => {
+      window.requestAnimationFrame(handleScroll);
+    };
+
+    window.addEventListener("scroll", throttledScroll);
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", throttledScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [menuOpen]);
+
+  const sections = ["services", "about", "projects", "advantages", "contacts"];
+
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`} role="banner">
       <div
         className={`container ${styles.header_container} ${
           scrolled ? styles.withElements : ""
@@ -63,36 +69,15 @@ const Header = ({ scrolled }) => {
         </a>
 
         <nav className={styles.nav}>
-          <a
-            href="#services"
-            className={activeId === "services" ? styles.active : ""}
-          >
-            {t("services")}
-          </a>
-          <a
-            href="#about"
-            className={activeId === "about" ? styles.active : ""}
-          >
-            {t("about")}
-          </a>
-          <a
-            href="#projects"
-            className={activeId === "projects" ? styles.active : ""}
-          >
-            {t("projects")}
-          </a>
-          <a
-            href="#advantages"
-            className={activeId === "advantages" ? styles.active : ""}
-          >
-            {t("advantages")}
-          </a>
-          <a
-            href="#contacts"
-            className={activeId === "contacts" ? styles.active : ""}
-          >
-            {t("contacts")}
-          </a>
+          {sections.map((id) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              className={activeId === id ? styles.active : ""}
+            >
+              {t(id)}
+            </a>
+          ))}
         </nav>
 
         <a
@@ -112,6 +97,8 @@ const Header = ({ scrolled }) => {
           className={`${styles.burger} ${menuOpen ? styles.open : ""}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
         >
           <span></span>
           <span></span>
@@ -120,6 +107,7 @@ const Header = ({ scrolled }) => {
       </div>
 
       <MobileMenu
+        id="mobile-menu"
         buttonRef={burgerButtonRef}
         isOpen={menuOpen}
         onClose={() => setMenuOpen(false)}

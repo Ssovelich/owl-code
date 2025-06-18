@@ -12,7 +12,6 @@ const MobileMenu = ({ onClose, isOpen }) => {
   const [isClosing, setIsClosing] = useState(false);
   const [shouldRender, setShouldRender] = useState(isOpen);
 
-  // Показ/приховування меню
   useEffect(() => {
     if (isOpen) {
       setShouldRender(true);
@@ -23,24 +22,39 @@ const MobileMenu = ({ onClose, isOpen }) => {
     }
   }, [isOpen]);
 
-  // Блокування скролу і збереження відступу для scrollbar
   useEffect(() => {
-    if (isOpen) {
-      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.overflow = "hidden";
-      document.body.style.paddingRight = `${scrollBarWidth}px`;
-    } else {
-      document.body.style.overflow = "";
-      document.body.style.paddingRight = "";
-    }
+  if (isOpen) {
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.overflow = 'hidden';
+    document.body.dataset.scrollY = scrollY;
+  } else {
+    const scrollY = document.body.dataset.scrollY;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.overflow = '';
+    window.scrollTo(0, parseInt(scrollY || '0'));
+    delete document.body.dataset.scrollY;
+  }
 
-    return () => {
-      document.body.style.overflow = "";
-      document.body.style.paddingRight = "";
-    };
-  }, [isOpen]);
+  return () => {
+    const scrollY = document.body.dataset.scrollY;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.overflow = '';
+    window.scrollTo(0, parseInt(scrollY || '0'));
+    delete document.body.dataset.scrollY;
+  };
+}, [isOpen]);
 
-  // Закриття по таймеру
+
   useEffect(() => {
     if (isClosing) {
       const timeout = setTimeout(() => {
@@ -50,7 +64,6 @@ const MobileMenu = ({ onClose, isOpen }) => {
     }
   }, [isClosing, onClose]);
 
-  // Esc + swipe закриття
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
@@ -94,7 +107,12 @@ const MobileMenu = ({ onClose, isOpen }) => {
   if (!shouldRender) return null;
 
   return (
-    <div className={styles.backdrop} onClick={handleClose}>
+    <div
+      className={`${styles.backdrop}`}
+      onClick={handleClose}
+      role="dialog"
+      aria-modal="true"
+    >
       <div
         className={`${styles.menu} ${isClosing ? styles.closing : ""}`}
         onClick={(e) => e.stopPropagation()}
@@ -112,6 +130,10 @@ const MobileMenu = ({ onClose, isOpen }) => {
             {t("about")}
             <FaArrowRightLong size={24} />
           </a>
+          <a href="#projects" onClick={handleLinkClick} className={styles.navLink}>
+            {t("projects")}
+            <FaArrowRightLong size={24} />
+          </a>
           <a href="#advantages" onClick={handleLinkClick} className={styles.navLink}>
             {t("advantages")}
             <FaArrowRightLong size={24} />
@@ -125,8 +147,6 @@ const MobileMenu = ({ onClose, isOpen }) => {
         <a href="#consultation" className={styles.consultationBtn} onClick={handleLinkClick}>
           {t("get_consultation")}
         </a>
-
-        {/* <img className={styles.logo} src={logo} alt="Owl logo" /> */}
       </div>
     </div>
   );
