@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 
-import Header from "./header/Header.jsx";
+import Header from "./Header/Header.jsx";
 import Hero from "./Hero/Hero.jsx";
 import Services from "./Services/Services.jsx";
 import Footer from "./Footer/Footer.jsx";
@@ -14,6 +14,13 @@ import About from "./About/About.jsx";
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+  if ('scrollRestoration' in window.history) {
+    window.history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+}, []);
 
   useEffect(() => {
     const handleScroll = () => {
