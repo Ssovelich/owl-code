@@ -110,7 +110,7 @@ const Header = ({ scrolled }) => {
         id="mobile-menu"
         buttonRef={burgerButtonRef}
         isOpen={menuOpen}
-        onClose={() => setMenuOpen(false)}
+        setIsOpen={setMenuOpen}
       />
     </header>
   );

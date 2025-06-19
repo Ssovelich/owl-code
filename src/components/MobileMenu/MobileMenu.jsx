@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import styles from "./MobileMenu.module.css";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
-import logo from "../../../public/owlGrey.png";
 import { useTranslation } from "react-i18next";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 const ANIMATION_DURATION = 400;
 
-const MobileMenu = ({ onClose, isOpen }) => {
+const MobileMenu = ({ isOpen, setIsOpen }) => {
   const { t } = useTranslation("common");
   const [isClosing, setIsClosing] = useState(false);
   const [shouldRender, setShouldRender] = useState(isOpen);
@@ -16,36 +15,28 @@ const MobileMenu = ({ onClose, isOpen }) => {
     if (isOpen) {
       setShouldRender(true);
       setIsClosing(false);
-    } else {
-      setIsClosing(true);
-      setTimeout(() => setShouldRender(false), ANIMATION_DURATION);
-    }
-  }, [isOpen]);
 
-  useEffect(() => {
-    if (isOpen) {
-      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+      const scrollBarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
       document.body.style.paddingRight = `${scrollBarWidth}px`;
-    } else {
-      document.body.style.overflow = "";
-      document.body.style.paddingRight = "";
+    } else if (!isClosing) {
+      setIsClosing(true);
     }
-
-    return () => {
-      document.body.style.overflow = "";
-      document.body.style.paddingRight = "";
-    };
   }, [isOpen]);
 
   useEffect(() => {
     if (isClosing) {
       const timeout = setTimeout(() => {
-        onClose();
+        setShouldRender(false);
+        setIsOpen(false); // ❗ Синхронне закриття — бургер повертається
+        document.body.style.overflow = "";
+        document.body.style.paddingRight = "";
       }, ANIMATION_DURATION);
+
       return () => clearTimeout(timeout);
     }
-  }, [isClosing, onClose]);
+  }, [isClosing, setIsOpen]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -85,13 +76,15 @@ const MobileMenu = ({ onClose, isOpen }) => {
     }
   };
 
-  const handleLinkClick = () => handleClose();
+  const handleLinkClick = () => {
+    handleClose(); // Закривається через isClosing
+  };
 
   if (!shouldRender) return null;
 
   return (
     <div
-      className={`${styles.backdrop}`}
+      className={styles.backdrop}
       onClick={handleClose}
       role="dialog"
       aria-modal="true"
@@ -127,7 +120,11 @@ const MobileMenu = ({ onClose, isOpen }) => {
           </a>
         </nav>
 
-        <a href="#consultation" className={styles.consultationBtn} onClick={handleLinkClick}>
+        <a
+          href="#consultation"
+          className={styles.consultationBtn}
+          onClick={handleLinkClick}
+        >
           {t("get_consultation")}
         </a>
       </div>
