@@ -29,7 +29,7 @@ const MobileMenu = ({ isOpen, setIsOpen }) => {
     if (isClosing) {
       const timeout = setTimeout(() => {
         setShouldRender(false);
-        setIsOpen(false); // ❗ Синхронне закриття — бургер повертається
+        setIsOpen(false);
         document.body.style.overflow = "";
         document.body.style.paddingRight = "";
       }, ANIMATION_DURATION);
@@ -77,7 +77,7 @@ const MobileMenu = ({ isOpen, setIsOpen }) => {
   };
 
   const handleLinkClick = () => {
-    handleClose(); // Закривається через isClosing
+    handleClose();
   };
 
   if (!shouldRender) return null;
